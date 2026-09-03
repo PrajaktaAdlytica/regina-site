@@ -1,0 +1,25 @@
+{
+  "name": "regina-motion-study",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/export-brand-tokens.mjs && vite build && node scripts/prerender-site.mjs && node scripts/prepare-sites-build.mjs && node scripts/build-site-worker.mjs",
+    "test:site": "node --test tests/site.test.mjs",
+    "tokens:brand": "node scripts/export-brand-tokens.mjs",
+    "test:brand": "node --test tests/brand-tokens.test.mjs",
+    "preview": "vite preview",
+    "test:sites": "node --test tests/sites-worker.test.mjs"
+  },
+  "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "@vitejs/plugin-react": "5.0.4",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "three": "^0.185.1",
+    "vite": "6.4.2"
+  }
+}
