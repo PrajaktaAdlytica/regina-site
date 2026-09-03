@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import {pages,projects,programmes,goals,organisation} from '../src/site/content.js';
 const dir='dist/client';
 const htmlFor=route=>fs.readFileSync(dir+(route==='/'?'/':route)+'index.html','utf8');
+test('social cards and canonical links use the trusted review origin',()=>{const origin=JSON.parse(fs.readFileSync('site.config.json','utf8')).origin;for(const route of Object.keys(pages)){const html=htmlFor(route);assert.ok(html.includes(`property="og:image" content="${origin}/og.png"`));assert.ok(html.includes(`name="twitter:image" content="${origin}/og.png"`));assert.ok(html.includes(`rel="canonical" href="${origin+route}"`));}});
 test('all eight site routes are pre-rendered in Polish with unique SEO titles',()=>{
  const titles=[];for(const [route,meta] of Object.entries(pages)){const html=htmlFor(route);assert.match(html,/<html lang="pl">/);assert.equal((html.match(/<h1[ >]/g)||[]).length,1);assert.ok(html.includes(meta.title.replaceAll('&','&amp;')));assert.match(html,/<main id="main">/);assert.match(html,/application\/ld\+json/);assert.match(html,/noindex, nofollow/);titles.push(meta.title)}assert.equal(new Set(titles).size,8);
 });

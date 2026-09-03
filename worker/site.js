@@ -1,4 +1,3 @@
-import legacy from './index.js';
 const routes=new Set(['/','/misja/','/dzialania/','/projekty/','/partnerstwo/','/kontakt/','/prywatnosc/','/informacje/']);
 export default {
  async fetch(request,env){
