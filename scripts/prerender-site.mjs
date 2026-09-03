@@ -6,7 +6,8 @@ import {createServer} from 'vite';
 import {pages,organisation} from '../src/site/content.js';
 
 const config=JSON.parse(fs.readFileSync('site.config.json','utf8'));
-const origin=(process.env.SITE_ORIGIN||config.origin||'').replace(/\/$/,'');
+const vercelOrigin=process.env.VERCEL_PROJECT_PRODUCTION_URL?`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`:'';
+const origin=(process.env.SITE_ORIGIN||vercelOrigin||config.origin||'').replace(/\/$/,'');
 if(origin&&!/^https:\/\/[^/]+$/.test(origin))throw new Error('SITE_ORIGIN must be a trusted HTTPS origin');
 const escape=s=>String(s).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');
 const root=path.resolve('dist/client');

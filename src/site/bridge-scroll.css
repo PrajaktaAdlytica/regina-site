@@ -1,0 +1,27 @@
+.city-photo-window { overflow:hidden; }
+.city-photo-window img { transform-origin:50% 50%; }
+/* ScrollTrigger sets visible on both onEnter and onEnterBack, and removes
+   that state outside the viewport. Re-entry therefore restarts both effects. */
+.city-context[data-scroll-reveal="visible"] .city-photo-window {
+ animation:bridge-frame-open 1.25s cubic-bezier(.22,1,.36,1) both;
+}
+.city-context[data-scroll-reveal="visible"] .city-photo-window img {
+ animation:bridge-photo-settle 1.5s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes bridge-frame-open {
+ from { clip-path:inset(9% 12% round 28px); }
+ to { clip-path:inset(0% 0% round 0px); }
+}
+@keyframes bridge-photo-settle {
+ from { transform:scale(1.1); }
+ to { transform:scale(1); }
+}
+@media(max-width:900px) {
+ .city-context[data-scroll-reveal="visible"] .city-photo-window { animation-duration:.9s; }
+ .city-context[data-scroll-reveal="visible"] .city-photo-window img { animation-duration:1.1s; }
+ @keyframes bridge-frame-open { from { clip-path:inset(6% 7% round 16px); } to { clip-path:inset(0% 0% round 0px); } }
+ @keyframes bridge-photo-settle { from { transform:scale(1.045); } to { transform:scale(1); } }
+}
+@media(prefers-reduced-motion:reduce) {
+ .city-context .city-photo-window,.city-context .city-photo-window img { animation:none!important; clip-path:none!important; transform:none!important; }
+}

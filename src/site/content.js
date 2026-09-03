@@ -106,14 +106,16 @@ export const projects = [
   {
     id: "accelerate",
     title: "ACCELERATE POLAND",
-    url: "https://www.acceleratepoland.org.pl",
-    domain: "acceleratepoland.org.pl",
+    logo: "/site/project-brands/accelerate-poland.png",
+    url: "https://www.acceleratepoland.org",
+    domain: "acceleratepoland.org",
     number: "01",
     theme: "wine",
   },
   {
     id: "asean",
     title: "ASEAN BUSINESS COUNCIL POLAND",
+    logo: "/site/project-brands/asean-poland.jpg",
     url: "https://aseancouncilpoland.wixsite.com/website",
     domain: "aseancouncilpoland.wixsite.com",
     number: "02",
@@ -122,6 +124,7 @@ export const projects = [
   {
     id: "safta",
     title: "SAFTA BUSINESS COUNCIL POLAND",
+    logo: "/site/project-brands/safta-poland.svg",
     url: "https://www.safta.pl",
     domain: "safta.pl",
     number: "03",

@@ -8,6 +8,8 @@ import {
   Cube,
 } from "@phosphor-icons/react";
 import { programmes } from "./content.js";
+import { scrollHomeTo } from "./scroll-home-to.js";
+import { headerOffset } from "./header-offset.js";
 const Sculpture = lazy(() => import("../Sculpture.jsx"));
 const chapters = [programmes[5], programmes[0], programmes[3]];
 export default function HeroJourney() {
@@ -20,7 +22,7 @@ export default function HeroJourney() {
     [scene, setScene] = useState("loading");
   useEffect(() => {
     const media = matchMedia(
-      "(min-width: 900px) and (prefers-reduced-motion: no-preference)",
+      "(min-width: 900px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)",
     );
     const update = () =>
       setEnhanced(media.matches && !navigator.connection?.saveData);
@@ -39,7 +41,7 @@ export default function HeroJourney() {
       const stage = el.querySelector(".hero-sticky").offsetHeight;
       const p = Math.max(
         0,
-        Math.min(1, (16 - rect.top) / Math.max(1, el.offsetHeight - stage)),
+        Math.min(1, (headerOffset() - rect.top) / Math.max(1, el.offsetHeight - stage)),
       );
       progress.current = p;
       if (bar.current) bar.current.style.transform = `scaleX(${p})`;
@@ -62,15 +64,14 @@ export default function HeroJourney() {
     progress.current = [0, 0.47, 0.94][i];
     if (enhanced) {
       const el = host.current;
-      window.scrollTo({
-        top:
+      scrollHomeTo(
           scrollY +
           el.getBoundingClientRect().top -
-          16 +
+          headerOffset() +
           (el.offsetHeight - el.querySelector(".hero-sticky").offsetHeight) *
             progress.current,
-        behavior: motion ? "smooth" : "instant",
-      });
+        motion,
+      );
     }
   };
   const current = chapters[chapter];

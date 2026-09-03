@@ -1,5 +1,17 @@
-import React from "react";
-import { organisation as org, programmes, goals, projects } from "./content.js";
+import React, { useEffect, useRef } from "react";
+import { organisation as org, programmes, projects } from "./content.js";
+import MissionAtlas from "./MissionAtlas.jsx";
+import InternationalCooperation from "./InternationalCooperation.jsx";
+import "./community-feature.css";
+import "./bridge-scroll.css";
+import "./mission-statement.css";
+import "./activities.css";
+import "./projects.css";
+import "./partnership-scroll.css";
+import "./partnership-hover.css";
+import "./contact.css";
+import ContactMap from "./ContactMap.jsx";
+import { EnvelopeSimple, Phone, ArrowUpRight, MapPin } from "@phosphor-icons/react";
 import {
   PageIntro,
   SectionIntro,
@@ -11,24 +23,19 @@ import {
   Accordion,
 } from "./components.jsx";
 import ContactForm from "./ContactForm.jsx";
+import { MissionPhotoHero, PartnershipCollageHero, ConnectedCollage, ResearchEditorial, Photo, photoSources } from "./Editorial.jsx";
 export function Mission() {
+  const page = useRef(null);
+  useEffect(() => {
+    let disposed = false, cleanup;
+    import('./mission-scroll-engine.js').then(({ mountMissionScrollMotion }) => {
+      if (!disposed) cleanup = mountMissionScrollMotion(page.current);
+    }).catch(() => { /* Motion is optional; all content stays readable. */ });
+    return () => { disposed = true; cleanup?.(); };
+  }, []);
   return (
-    <>
-      <PageIntro
-        eyebrow="Misja i cele"
-        title={
-          <>
-            Wiedza, która wzmacnia.
-            <br />
-            <em>Współpraca, która łączy.</em>
-          </>
-        }
-      >
-        <p>
-          Od ponad dwóch dekad działamy na rzecz rozwoju społecznego i
-          gospodarczego Polski i społeczności międzynarodowej.
-        </p>
-      </PageIntro>
+    <div className="mission-page" ref={page}>
+      <MissionPhotoHero />
       <section className="mission-statement">
         <div className="container">
           <p className="eyebrow">Nasza misja</p>
@@ -39,124 +46,80 @@ export function Mission() {
           </div>
         </div>
       </section>
-      <section className="container section">
-        <SectionIntro
-          eyebrow="Kierunki zaangażowania"
-          title={
-            <>
-              Sześć celów.
-              <br />
-              Wspólna odpowiedzialność.
-            </>
-          }
-        >
-          <p>{org.purpose}</p>
-        </SectionIntro>
-        <div className="goal-grid">
-          {goals.map(([icon, title, text], i) => (
-            <article key={title}>
-              <span className="goal-number">0{i + 1}</span>
-              <Icon name={icon} />
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section className="geography-section">
-        <div className="container section geography-grid">
-          <div>
-            <p className="eyebrow">
-              Polskie korzenie. Międzynarodowa współpraca.
-            </p>
-            <h2>
-              Blisko potrzeb.
-              <br />
-              <em>Ponad granicami.</em>
-            </h2>
-            <p>{org.intro}</p>
-            <ul className="region-list" aria-label="Regiony współpracy">
-              <li>Europa</li>
-              <li>Afryka</li>
-              <li>Azja</li>
-              <li>Australia</li>
-            </ul>
-            <TextLink href="/partnerstwo/">
-              Poznaj możliwości współpracy
-            </TextLink>
-          </div>
-          <figure>
-            <img
-              src="/visual-library/poland-outline.svg"
-              alt="Kontur Polski."
-              width="800"
-              height="480"
-              loading="lazy"
-            />
-            <figcaption>Polska — miejsce, z którego działamy.</figcaption>
-          </figure>
-        </div>
-      </section>
-      <section className="container section illustration-statement">
-        <Artwork
+      <MissionAtlas />
+      <InternationalCooperation />
+      <section className="container section community-feature" id="rozwoj-spoleczny" aria-labelledby="community-title">
+        <header className="community-feature-heading">
+          <p className="eyebrow">Rozwój społeczny</p>
+          <h2 id="community-title">Kompetencje ludzi.<br /><em>Potencjał społeczności.</em></h2>
+        </header>
+        <div className="community-feature-body">
+        <figure className="community-feature-art">
+          <Artwork
           name="community"
           alt="Ilustracja ludzi wspólnie pracujących na rzecz społeczności."
-        />
-        <div>
-          <p className="eyebrow">Rozwój społeczny</p>
-          <h2>
-            Kompetencje ludzi.
-            <br />
-            Potencjał społeczności.
-          </h2>
+          />
+          <figcaption>Ilustracja koncepcyjna</figcaption>
+        </figure>
+        <div className="community-feature-copy">
           <p>
             Inicjatywy lokalne na rzecz integracji, aktywizacji zawodowej i
             rozwoju kompetencji społecznych.
           </p>
+          <ul className="community-feature-themes" aria-label="Obszary rozwoju społecznego"><li>Integracja</li><li>Aktywizacja zawodowa</li><li>Kompetencje społeczne</li></ul>
           <TextLink href="/dzialania/#spolecznosc">
             Poznaj nasze działania
           </TextLink>
         </div>
+        </div>
       </section>
-      <section className="city-context"><figure><img src="/site/warsaw.webp" width="1600" height="900" alt="Panorama Warszawy nad Wisłą z Mostem Świętokrzyskim." loading="lazy"/><figcaption><span>Warszawa, Polska — kontekst miejsca.</span><a href="/informacje/">Fot. Arne Müseler · CC BY-SA 3.0 DE</a></figcaption></figure></section>
+      <section className="city-context" id="warszawa"><figure><div className="city-photo-window"><img src="/site/warsaw.webp" width="1600" height="900" alt="Panorama Warszawy nad Wisłą z Mostem Świętokrzyskim." loading="lazy"/></div><figcaption><span>Warszawa, Polska — kontekst miejsca.</span><a href="/informacje/">Fot. Arne Müseler · CC BY-SA 3.0 DE</a></figcaption></figure></section>
       <PartnershipCTA />
-    </>
+    </div>
   );
 }
 export function Activities() {
+  const page = useRef(null);
+  useEffect(() => {
+    let disposed = false, cleanup;
+    import('./activities-scroll-engine.js').then(({ mountActivitiesScrollMotion }) => {
+      if (!disposed) cleanup = mountActivitiesScrollMotion(page.current);
+    }).catch(() => { /* Keep the complete page readable when motion is unavailable. */ });
+    return () => { disposed = true; cleanup?.(); };
+  }, []);
+  const orderedProgrammes = [programmes[5], programmes[3], programmes[2], programmes[0], programmes[1], programmes[4]];
+  const photos = {edukacja:"students",wspolpraca:"meeting",spolecznosc:"mentoring",innowacje:"laboratory",przedsiebiorcy:"meeting",badania:"students"};
   return (
-    <>
-      <PageIntro
-        eyebrow="Działania"
-        title={
-          <>
-            Praktyczna wiedza.
-            <br />
-            <em>Rzeczywiste możliwości.</em>
-          </>
-        }
-      >
-        <p>
-          Nasze programy łączą doradztwo, szkolenia i projekty badawcze, aby
-          dostarczać praktyczne rozwiązania dla przedsiębiorstw i społeczności.
-        </p>
-      </PageIntro>
-      <nav className="programme-jump container" aria-label="Obszary działania">
-        {programmes.map((p, i) => (
-          <a key={p.id} href={"#" + p.id}>
-            <span>0{i + 1}</span>
-            {p.short}
-          </a>
-        ))}
-      </nav>
-      <div className="programme-chapters">
-        {programmes.map((p, i) => (
+    <div className="activities-page" ref={page}>
+      <section className="activities-opening container" aria-labelledby="activities-title">
+        <nav className="activities-breadcrumb" aria-label="Ścieżka nawigacji"><a href="/">Strona główna</a><span aria-hidden="true">/</span><span aria-current="page">Działania</span></nav>
+        <div className="activities-opening-grid">
+          <div className="activities-opening-copy">
+            <p className="eyebrow">Działania / Regina Purpurea Fundus</p>
+            <h1 id="activities-title">Praktyczna{" "}<br />wiedza.<em>Rzeczywiste możliwości.</em></h1>
+            <p className="activities-opening-description">Nasze programy łączą doradztwo, szkolenia i projekty badawcze, aby dostarczać praktyczne rozwiązania dla przedsiębiorstw i społeczności.</p>
+          </div>
+          <nav className="activities-index" aria-label="Obszary działania">
+            <div className="activities-index-heading"><span>Obszary działania</span><span>01 — 06</span></div>
+            <ol>{orderedProgrammes.map((p, i) => (
+              <li key={p.id}><a href={"#" + p.id}>
+                <span className="activities-index-number">0{i + 1}</span>
+                <Icon name={p.icon} size={28} />
+                <span className="activities-index-name">{p.short}</span>
+                <Icon name="ArrowDownRight" size={22} className="activities-index-arrow" />
+              </a></li>
+            ))}</ol>
+          </nav>
+        </div>
+      </section>
+      <div className="programme-chapters editorial-chapters container">
+        {orderedProgrammes.map((p, i) => (
           <section
             className={"programme-chapter " + (i % 2 ? "reversed" : "")}
             id={p.id}
             key={p.id}
           >
-            <div className="container programme-chapter-inner">
+            <div className="programme-chapter-inner">
               <div className="programme-copy">
                 <div className="programme-label">
                   <span>0{i + 1} / Obszar działania</span>
@@ -176,61 +139,54 @@ export function Activities() {
                 </TextLink>
               </div>
               <div className="programme-art">
-                {p.image ? (
-                  <Artwork
-                    name={p.image}
-                    alt={"Ilustracja: " + p.title + "."}
-                  />
-                ) : (
-                  <img
-                    src={"/visual-library/" + p.vector + ".svg"}
-                    alt=""
-                    width="800"
-                    height="480"
-                    loading="lazy"
-                  />
-                )}
+                <Photo name={photos[p.id]} alt={`Fotografia tematyczna: ${p.title}.`} />
               </div>
             </div>
           </section>
         ))}
       </div>
+      <ResearchEditorial />
       <PartnershipCTA />
-    </>
+    </div>
   );
 }
 export function Projects() {
+  const page = useRef(null);
+  useEffect(() => {
+    let disposed = false, cleanup;
+    import('./projects-scroll-engine.js').then(({ mountProjectsScrollMotion }) => {
+      if (!disposed) cleanup = mountProjectsScrollMotion(page.current);
+    }).catch(() => { /* Motion is optional; project links remain available. */ });
+    return () => { disposed = true; cleanup?.(); };
+  }, []);
   return (
-    <>
-      <PageIntro
-        eyebrow="Aktualne projekty"
-        title={
-          <>
-            Inicjatywy, które
-            <br />
-            <em>łączą możliwości.</em>
-          </>
-        }
-      >
-        <p>
-          Poznaj aktualne projekty Fundacji Regina Purpurea Fundus. Każdy z nich
-          ma własną stronę, na której znajdziesz więcej informacji.
-        </p>
-      </PageIntro>
+    <div className="projects-page" ref={page}>
+      <section className="projects-opening container" aria-labelledby="projects-title">
+        <nav className="projects-breadcrumb" aria-label="Ścieżka nawigacji"><a href="/">Strona główna</a><span aria-hidden="true">/</span><span aria-current="page">Aktualne projekty</span></nav>
+        <div className="projects-opening-grid">
+          <div className="projects-opening-title">
+            <p className="eyebrow">Aktualne projekty</p>
+            <h1 id="projects-title">Inicjatywy, które <em>łączą możliwości.</em></h1>
+          </div>
+          <div className="projects-opening-note">
+            <div className="projects-opening-count"><span>{String(projects.length).padStart(2, '0')}</span><span>Aktualne<br />projekty</span><Icon name="Stack" size={36} /></div>
+            <p>Poznaj aktualne projekty Fundacji Regina Purpurea Fundus. Każdy z nich ma własną stronę, na której znajdziesz więcej informacji.</p>
+          </div>
+        </div>
+      </section>
+      <ConnectedCollage />
       <section
         className="container project-showcase"
         aria-label="Projekty fundacji"
       >
         {projects.map((p) => (
-          <article key={p.id} className={"project-panel " + p.theme}>
+          <div key={p.id} className="project-reveal-row">
+          <article className={"project-panel " + p.theme}>
             <div className="project-panel-top">
               <span>Projekt / {p.number}</span>
-              <Icon
-                name={
-                  p.id === "accelerate" ? "Lightbulb" : "GlobeHemisphereEast"
-                }
-                size={56}
-              />
+              <div className="project-brand-stage" data-brand={p.id}>
+                <img src={p.logo} alt={`Logo ${p.title}`} loading="lazy" decoding="async" />
+              </div>
             </div>
             <h2>{p.title}</h2>
             <div className="project-panel-bottom">
@@ -240,6 +196,7 @@ export function Projects() {
               </Button>
             </div>
           </article>
+          </div>
         ))}
       </section>
       <section className="container section project-context">
@@ -259,27 +216,21 @@ export function Projects() {
         />
       </section>
       <PartnershipCTA />
-    </>
+    </div>
   );
 }
 export function Partnership() {
+  const page = useRef(null);
+  useEffect(() => {
+    let disposed = false, cleanup;
+    import('./partnership-scroll-engine.js').then(({ mountPartnershipScrollMotion }) => {
+      if (!disposed) cleanup = mountPartnershipScrollMotion(page.current);
+    }).catch(() => { /* Optional enhancement: content and links stay visible. */ });
+    return () => { disposed = true; cleanup?.(); };
+  }, []);
   return (
-    <>
-      <PageIntro
-        eyebrow="Partnerstwo"
-        title={
-          <>
-            Łączymy wiedzę,
-            <br />
-            ludzi <em>i instytucje.</em>
-          </>
-        }
-      >
-        <p>
-          Wspólne projekty, doradztwo eksperckie i wsparcie w pozyskiwaniu
-          finansowania.
-        </p>
-      </PageIntro>
+    <div className="partnership-page" ref={page}>
+      <PartnershipCollageHero />
       <section className="partnership-opening container">
         <Artwork
           name="international"
@@ -404,68 +355,42 @@ export function Partnership() {
         </div>
       </section>
       <PartnershipCTA />
-    </>
+    </div>
   );
 }
 export function Contact() {
+  const page = useRef(null);
+  useEffect(() => {
+    let disposed = false, cleanup;
+    import('./contact-scroll-engine.js').then(({ mountContactScrollMotion }) => {
+      if (!disposed) cleanup = mountContactScrollMotion(page.current);
+    }).catch(() => { /* Keep contact controls usable without the motion enhancement. */ });
+    return () => { disposed = true; cleanup?.(); };
+  }, []);
   return (
-    <>
-      <PageIntro
-        eyebrow="Kontakt"
-        title={
-          <>
-            Dobry początek?
-            <br />
-            <em>Rozmowa.</em>
-          </>
-        }
-      >
-        <p>
-          Chcesz porozmawiać o współpracy, naszych programach lub projekcie?
-          Skontaktuj się z nami.
-        </p>
-      </PageIntro>
+    <div className="contact-page" ref={page}>
+      <section className="contact-opening container" aria-labelledby="contact-title">
+        <nav aria-label="Ścieżka nawigacji" className="contact-breadcrumb"><a href="/">Strona główna</a><span aria-hidden="true">/</span><span aria-current="page">Kontakt</span></nav>
+        <div className="contact-opening-grid">
+          <div><p className="eyebrow">Kontakt / Regina Purpurea Fundus</p><h1 id="contact-title">Dobry początek?<br /><em>Rozmowa.</em></h1></div>
+          <div className="contact-opening-note"><Icon name="Handshake" size={56}/><p>Chcesz porozmawiać o współpracy, naszych programach lub projekcie? Skontaktuj się z nami.</p><TextLink href="#wiadomosc">Napisz do nas</TextLink></div>
+        </div>
+      </section>
       <section className="container contact-layout">
         <div className="contact-details">
-          <p className="eyebrow">Fundacja Regina Purpurea Fundus</p>
-          <h2>Jesteśmy w kontakcie.</h2>
+          <header><p className="eyebrow">Bezpośredni kontakt</p><h2>Jesteśmy<br /><em>w kontakcie.</em></h2></header>
           <dl>
-            <div>
-              <dt>Email</dt>
-              <dd>
-                <a href={"mailto:" + org.email}>{org.email}</a>
-              </dd>
-            </div>
-            <div>
-              <dt>Telefon</dt>
-              <dd>
-                <a href={"tel:" + org.telephone}>{org.phone}</a>
-              </dd>
-            </div>
-            <div>
-              <dt>Siedziba</dt>
-              <dd>{org.city}</dd>
-            </div>
+            <div className="contact-detail-row"><dt><EnvelopeSimple size={22} aria-hidden="true"/>Email</dt><dd><a href={"mailto:" + org.email}>{org.email}<ArrowUpRight size={22} aria-hidden="true"/></a></dd></div>
+            <div className="contact-detail-row"><dt><Phone size={22} aria-hidden="true"/>Telefon</dt><dd><a href={"tel:" + org.telephone}>{org.phone}<ArrowUpRight size={22} aria-hidden="true"/></a></dd></div>
+            <div className="contact-detail-row"><dt><MapPin size={22} aria-hidden="true"/>Siedziba</dt><dd><a href="#lokalizacja">{org.city}<ArrowUpRight size={22} aria-hidden="true"/></a></dd></div>
           </dl>
-          <img
-            src="/visual-library/poland-warsaw.svg"
-            alt="Polska z zaznaczoną Warszawą — miastem siedziby fundacji."
-            width="800"
-            height="480"
-          />
-          <p className="small-muted">
-            KRS {org.krs} · NIP {org.nip}
-            <br />
-            REGON {org.regon}
-          </p>
+          <div className="contact-registration"><p>{org.name}</p><dl>{[['KRS',org.krs],['NIP',org.nip],['REGON',org.regon]].map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
         </div>
-        <ContactForm />
+        <div className="contact-form-wrap" id="wiadomosc"><ContactForm /></div>
       </section>
-      <section className="container section">
-        <SectionIntro
-          eyebrow="Przed pierwszą rozmową"
-          title="Warto wiedzieć."
-        />
+      <ContactMap />
+      <section className="contact-faq container section">
+        <header><p className="eyebrow">Przed pierwszą rozmową</p><h2>Warto<br /><em>wiedzieć.</em></h2></header>
         <Accordion
           items={[
             [
@@ -483,7 +408,7 @@ export function Contact() {
           ]}
         />
       </section>
-    </>
+    </div>
   );
 }
 export function Privacy() {
@@ -519,6 +444,7 @@ export function Privacy() {
           Linki do projektów prowadzą do odrębnych witryn. Korzystanie z nich
           może podlegać zasadom prywatności ich operatorów.
         </p>
+        <p>Interaktywna mapa na stronie Kontakt ładuje się dopiero po wybraniu „Włącz mapę”. Wtedy przeglądarka łączy się z OpenStreetMap, którego operator otrzymuje dane techniczne połączenia, w tym adres IP. Możesz wyłączyć mapę przyciskiem pod jej widokiem. <a href="https://osmfoundation.org/wiki/Privacy_Policy">Zasady prywatności OpenStreetMap</a>.</p>
         <h2>Informacje techniczne</h2>
         <p>
           Dostawca hostingu może przetwarzać dane techniczne niezbędne do
@@ -591,6 +517,11 @@ export function Legal() {
           licencji. Zdjęcie kontekstowe miasta, nie dokumentacja działalności
           fundacji.
         </p>
+        <h2 id="fotografie">Fotografie tematyczne</h2>
+        <p>Zdjęcia edukacji, spotkań i pracy w laboratorium ilustrują tematykę strony. Nie przedstawiają pracowników, partnerów ani uczestników projektów fundacji i nie stanowią dokumentacji jej działalności. Nie przypisujemy im lokalizacji w Polsce.</p>
+        <ul className="photo-source-list">{photoSources.map(([author,url,subject])=><li key={url}><a href={url}>{subject}</a> — {author}, Pexels.</li>)}</ul>
+        <p><a href="https://www.pexels.com/license/">Licencja Pexels</a>. Zmiany: zmniejszenie rozmiaru, kadrowanie i prezentacja w odcieniach szarości.</p>
+        <p>Kolaże na stronach Partnerstwo i Projekty są ilustracjami koncepcyjnymi wygenerowanymi z użyciem AI. Przedstawione osoby nie są zespołem fundacji; połączenia na mapie nie oznaczają rzeczywistych lokalizacji projektów.</p>
         <TextLink href="/kontakt/">Kontakt z fundacją</TextLink>
       </article>
     </>

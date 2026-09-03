@@ -150,7 +150,7 @@ summary:focus-visible {
   border-bottom: 1px solid var(--rp-line);
 }
 .header-inner {
-  min-height: 176px;
+  min-height: 92px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -162,13 +162,13 @@ summary:focus-visible {
 }
 .site-logo img {
   display: block;
-  width: 176px;
-  height: 72px;
+  width: 148px;
+  height: 60px;
   object-fit: contain;
 }
 .desktop-nav {
   display: flex;
-  gap: 22px;
+  gap: 16px;
 }
 .desktop-nav a {
   display: flex;
@@ -193,7 +193,7 @@ summary:focus-visible {
 .desktop-nav a[aria-current="page"] {
   color: var(--rp-wine);
 }
-.desktop-nav a[aria-current="page"]:after {
+.desktop-nav a:after {
   content: "";
   height: 1px;
   position: absolute;
@@ -201,6 +201,14 @@ summary:focus-visible {
   left: 28px;
   right: 0;
   background: var(--rp-wine);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 300ms var(--ease);
+  pointer-events: none;
+}
+.desktop-nav a:is(:hover, :focus-visible):after,
+.desktop-nav a[aria-current="page"]:after {
+  transform: scaleX(1);
 }
 .menu-trigger {
   display: none;
@@ -334,6 +342,24 @@ summary:focus-visible {
 .site-text-link:is(:hover, :focus-visible) svg {
   transform: translateX(3px);
 }
+.home-intro-surface {
+  background: var(--rp-plum);
+  color: var(--rp-inverse);
+}
+.home-intro-surface :is(.eyebrow, h1 em, .intro-marker, .muted) {
+  color: var(--rp-rose);
+}
+.home-intro-surface .intro-marker { border-color: var(--rp-rose); }
+.home-intro-surface .site-button {
+  background: var(--rp-inverse);
+  border-color: var(--rp-inverse);
+  color: var(--rp-plum);
+}
+.home-intro-surface .site-button .button-wipe {
+  background: var(--rp-blush);
+  color: var(--rp-plum);
+}
+.home-intro-surface a:focus-visible { outline-color: var(--rp-inverse); }
 .home-intro {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -343,6 +369,28 @@ summary:focus-visible {
 }
 .home-intro h1 {
   max-width: 760px;
+  font-size: clamp(42px, 4.5vw, 68px);
+  line-height: 1.08;
+  text-wrap: pretty;
+}
+.home-intro h1 .home-title-name {
+  display: block;
+  margin-bottom: 28px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rp-rose);
+}
+.home-programme-cta {
+  margin-top: 28px;
+}
+.home-programme-name {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.06em;
 }
 .home-intro-aside p {
   font-size: 18px;
@@ -357,7 +405,7 @@ summary:focus-visible {
   padding-left: 16px;
 }
 .home-intro-aside .site-button {
-  margin-top: 28px;
+  margin-top: 12px;
 }
 .mission-intro {
   display: grid;
@@ -370,6 +418,9 @@ summary:focus-visible {
 .mission-intro p:not(.eyebrow) {
   max-width: 740px;
   color: var(--rp-muted);
+}
+.mission-intro p + p {
+  margin-top: 24px;
 }
 .mission-intro .site-text-link {
   margin-top: 24px;
@@ -515,6 +566,16 @@ summary:focus-visible {
 }
 .accelerate-banner img {
   width: 100%;
+}
+.accelerate-banner .accelerate-brand-heading {
+  width: min(100%, 340px);
+  padding: 20px;
+  background: #fff;
+}
+.accelerate-brand-heading img {
+  display: block;
+  height: auto;
+  object-fit: contain;
 }
 .partnership-cta {
   background: var(--rp-plum);
@@ -792,7 +853,7 @@ summary:focus-visible {
     padding-block: 80px;
   }
   .home-intro h1 {
-    font-size: 64px;
+    font-size: clamp(40px, 4.5vw, 54px);
   }
   .home-intro-aside p {
     font-size: 16px;
@@ -803,18 +864,18 @@ summary:focus-visible {
     width: calc(100% - 40px);
   }
   .header-inner {
-    min-height: 144px;
+    min-height: 80px;
   }
   .site-logo img {
-    width: 145px;
-    height: 60px;
+    width: 132px;
+    height: 54px;
   }
   .home-intro {
     display: block;
     padding-block: 44px;
   }
   .home-intro h1 {
-    font-size: 48px;
+    font-size: clamp(36px, 7vw, 48px);
   }
   .home-intro-aside {
     margin-top: 32px;

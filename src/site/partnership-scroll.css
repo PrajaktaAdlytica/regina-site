@@ -1,0 +1,2 @@
+/* Clip horizontal entrance offsets without introducing a scrolling container. */
+.partnership-page { overflow-x:clip; }

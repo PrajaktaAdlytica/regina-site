@@ -1,0 +1,3 @@
+/* One scroll interpolator at a time; native smooth scrolling resumes when
+   Lenis is destroyed on small screens or for reduced-motion preferences. */
+html.lenis { scroll-behavior: auto !important; }

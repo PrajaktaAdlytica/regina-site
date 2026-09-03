@@ -1,4 +1,18 @@
-# Regina — motion study 01
+# Regina Purpurea Fundus — website
+
+Six-page Polish foundation website: Home, Misja, Działania, Projekty, Partnerstwo and Kontakt, with privacy/information pages. Includes the original logo, project branding, responsive layouts, GSAP/Lenis scroll effects and reduced-motion support.
+
+## GitHub and public Vercel review
+
+Repository: https://github.com/PrajaktaAdlytica/regina-site
+
+Vercel builds with `npm ci` and `npm run build`, serving the pre-rendered static output in `dist/client`. `vercel.json` preserves page routes and review security headers; no SPA catch-all is used. The existing Sites worker pipeline is retained but not served on Vercel. Set `SITE_ORIGIN` to override canonical metadata; otherwise Vercel's production URL is used on Vercel and `site.config.json` is the local/Sites fallback.
+
+The shareable review is intentionally `noindex`. Contact prepares an email draft, not a server-delivered submission. The confirmed Accelerate destination is https://www.acceleratepoland.org (currently a coming-soon page). Assets and licences are bundled; no keys or `.env` files belong in source control.
+
+Validation: `npm run build && node --test tests/*.test.mjs`.
+
+## Historical motion-study notes
 
 Local preview: http://127.0.0.1:4173
 

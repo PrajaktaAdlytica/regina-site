@@ -1,0 +1,107 @@
+.contact-page { overflow-x: clip; }
+.contact-page :is(#wiadomosc, #lokalizacja) { scroll-margin-top: 48px; }
+.contact-opening { padding-block: 24px 56px; }
+.contact-breadcrumb { display: flex; flex-wrap: wrap; gap: 12px; font-size: 14px; margin-bottom: 40px; color: var(--rp-muted); }
+.contact-breadcrumb [aria-current] { color: var(--rp-wine); }
+.contact-breadcrumb a { text-underline-offset: 5px; }
+.contact-opening-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 64px; align-items: end; }
+.contact-opening h1 { font-size: clamp(3.5rem, 6.5vw, 6.5rem); line-height: .98; margin: 20px 0 0; }
+.contact-opening-note { max-width: 410px; padding-bottom: 8px; }
+.contact-opening-note > svg { color: var(--rp-wine); margin-bottom: 20px; }
+.contact-opening-note > p { font-size: 18px; color: var(--rp-muted); margin-bottom: 24px; }
+.contact-page .contact-layout { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 40px; padding-bottom: 80px; }
+.contact-page .contact-details { display: block; min-width: 0; background: var(--rp-plum); color: var(--rp-inverse); padding: 40px 32px; border-radius: 4px 64px 4px 4px; }
+.contact-page .contact-details h2 { font-size: clamp(2.75rem, 4vw, 4rem); max-width: none; }
+.contact-page .contact-details :is(.eyebrow, h2 em) { color: var(--rp-rose); }
+.contact-page .contact-details > dl { margin: 32px 0; }
+.contact-page .contact-detail-row { position: relative; isolation: isolate; padding: 20px 0; border-bottom: 1px solid rgb(255 248 239 / 22%); }
+.contact-detail-row::before { content: ""; position: absolute; inset: 0 -12px; z-index: -1; pointer-events: none; background: var(--rp-wine); transform: scaleX(0); transform-origin: left; transition: transform 240ms var(--rp-ease); }
+.contact-detail-row:nth-child(even)::before { transform-origin: right; }
+.contact-page .contact-detail-row dt { display: flex; align-items: center; gap: 10px; color: var(--rp-rose); font-size: 14px; margin-bottom: 8px; }
+.contact-page .contact-detail-row dd { margin: 0; font-size: 18px; }
+.contact-page .contact-detail-row dd a { color: var(--rp-inverse); min-height: 44px; display: flex; gap: 12px; justify-content: space-between; align-items: center; overflow-wrap: anywhere; }
+.contact-detail-row dd svg { flex-shrink: 0; transition: transform 420ms var(--rp-ease); }
+.contact-detail-row:focus-within::before { transform: scaleX(1); transition-duration: 420ms; }
+.contact-detail-row:focus-within dd svg { transform: translate(3px,-3px); }
+.contact-page .contact-details a:focus-visible { outline-color: var(--rp-inverse); }
+.contact-registration > p { color: var(--rp-rose); font-size: 14px; }
+.contact-page .contact-registration dl { margin: 20px 0 0; display: grid; gap: 8px; }
+.contact-page .contact-registration dl > div { display: flex; justify-content: space-between; gap: 20px; padding: 0; border: 0; font-size: 14px; }
+.contact-page .contact-registration dt { color: var(--rp-rose); }
+.contact-page .contact-registration dd { margin: 0; font-size: 14px; }
+.contact-form-wrap { min-width: 0; }
+.contact-page .contact-form-panel { background: var(--rp-blush); border: 0; border-radius: 4px; padding: 36px; }
+.contact-page .contact-form-panel h2 { font-size: clamp(2.25rem, 3.5vw, 3rem); }
+.contact-page .form-explainer { font-size: 14px !important; margin: 20px 0 28px; }
+.contact-page .form-explainer > svg { flex-shrink: 0; margin-top: 3px; }
+.contact-page .form-privacy { font-size: 14px !important; }
+.contact-page .form-field { min-width: 0; }
+.contact-page .form-field :is(input, textarea) { transition: border-color 240ms, background-color 240ms, box-shadow 240ms; }
+.contact-page .form-field:focus-within label { color: var(--rp-wine); }
+.contact-page .form-field :is(input, textarea):focus { background: var(--rp-inverse); box-shadow: 0 4px 16px rgb(44 25 33 / 6%); }
+.contact-location { background: var(--rp-blush); padding-block: 72px; }
+.contact-map-grid { display: grid; grid-template-columns: minmax(0,.75fr) minmax(0,1.25fr); gap: 56px; align-items: center; }
+.contact-map-copy h2 { font-size: clamp(2.75rem, 4.5vw, 4.75rem); margin-bottom: 28px; }
+.contact-map-copy > p:not(.eyebrow) { color: var(--rp-muted); font-size: 18px; margin-bottom: 24px; }
+.contact-map-copy > .contact-map-note { font-size: 14px !important; }
+.contact-map-copy .site-text-link { font-size: 14px; }
+.contact-map-panel { min-width: 0; }
+.contact-map-frame { height: 400px; overflow: hidden; border-radius: 64px 4px 4px 4px; background: var(--rp-stone); }
+.contact-map-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+.contact-map-cover { position: relative; height: 100%; isolation: isolate; background: var(--rp-plum); color: var(--rp-inverse); }
+.contact-map-cover > img { width: 100%; height: 100%; object-fit: cover; transition: transform 700ms var(--rp-ease); }
+.contact-map-cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 20%, rgb(44 25 33 / 90%)); pointer-events: none; }
+.contact-map-cover > div { position: absolute; bottom: 28px; left: 28px; right: 28px; z-index: 1; }
+.contact-map-cover span { display: block; font-family: var(--rp-font-display); font-size: 38px; margin-top: 8px; line-height: 1.1; }
+.contact-map-cover p { font-size: 14px; margin-top: 12px; }
+.contact-map-controls { display: flex; align-items: center; gap: 20px; padding-top: 20px; }
+.contact-map-controls > button { flex-shrink: 0; }
+.contact-map-controls > p { font-size: 14px; color: var(--rp-muted); }
+.contact-map-credit { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 12px; margin-top: 20px; color: var(--rp-muted); }
+.contact-map-credit a { text-decoration: underline; text-underline-offset: 3px; }
+.contact-faq { display: grid; grid-template-columns: minmax(0,.65fr) minmax(0,1.35fr); gap: 64px; }
+.contact-faq > header h2 { font-size: clamp(2.75rem, 4vw, 4rem); }
+.contact-faq .site-accordion { min-width: 0; }
+.contact-faq summary { position: relative; isolation: isolate; padding: 24px 12px; }
+.contact-faq summary::before { content: ""; position: absolute; inset: 0; background: var(--rp-blush); z-index: -1; transform: scaleX(0); transform-origin: left; transition: transform 240ms var(--rp-ease); pointer-events: none; }
+.contact-faq details:nth-child(even) summary::before { transform-origin: right; }
+.contact-faq summary h3 { transition: color 240ms; font-size: 26px; }
+.contact-faq summary:focus-visible::before, .contact-faq details[open] summary::before { transform: scaleX(1); }
+.contact-faq summary:focus-visible h3, .contact-faq details[open] h3 { color: var(--rp-wine); }
+.contact-page .copy-message:is(:hover,:focus-visible) { color: var(--rp-wine); text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) {
+  .contact-breadcrumb a:hover { text-decoration: underline; }
+  .contact-detail-row:hover::before, .contact-faq summary:hover::before { transform: scaleX(1); transition-duration: 420ms; }
+  .contact-detail-row:hover dd svg { transform: translate(3px,-3px); }
+  .contact-faq summary:hover h3 { color: var(--rp-wine); }
+  .contact-map-panel:hover .contact-map-cover > img { transform: scale(1.035); }
+  .contact-page .form-field :is(input,textarea):hover { border-color: var(--rp-wine); }
+}
+@media (max-width: 1100px) {
+  .contact-opening-grid { gap: 40px; }
+  .contact-page .contact-layout { gap: 24px; grid-template-columns: minmax(0,1fr) minmax(0,1.2fr); }
+  .contact-page .contact-details, .contact-page .contact-form-panel { padding: 28px 24px; }
+  .contact-page .form-grid { grid-template-columns: 1fr; }
+  .contact-map-grid, .contact-faq { gap: 32px; }
+}
+@media (max-width: 760px) {
+  .contact-opening { padding-block: 16px 36px; }
+  .contact-breadcrumb { margin-bottom: 28px; }
+  .contact-opening-grid, .contact-page .contact-layout, .contact-map-grid, .contact-faq { grid-template-columns: 1fr; gap: 32px; }
+  .contact-opening h1 { font-size: clamp(3.5rem, 12vw, 5rem); }
+  .contact-opening-note { max-width: none; }
+  .contact-opening-note > svg { display: none; }
+  .contact-opening-note > p { font-size: 16px; margin-bottom: 16px; }
+  .contact-page .contact-layout { padding-bottom: 48px; }
+  .contact-page .contact-detail-row dd { font-size: 16px; }
+  .contact-location { padding-block: 48px; }
+  .contact-map-frame { height: 340px; border-top-left-radius: 40px; }
+  .contact-map-controls { flex-wrap: wrap; gap: 12px; }
+  .contact-faq summary { padding-inline: 8px; gap: 12px; }
+  .contact-faq summary h3 { font-size: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-detail-row::before, .contact-detail-row dd svg, .contact-faq summary::before, .contact-faq summary h3,
+  .contact-map-cover > img, .contact-page .form-field :is(input,textarea) { transition: none; }
+  .contact-detail-row:is(:hover,:focus-within) dd svg, .contact-map-panel:hover .contact-map-cover > img { transform: none; }
+}

@@ -1,43 +1,49 @@
-import React from "react";
-import { organisation as org, programmes } from "./content.js";
+import React, { useEffect, useRef } from "react";
+import { PhotoPillars } from "./Editorial.jsx";
+import ProgrammeExplorer from "./ProgrammeExplorer.jsx";
+import { organisation as org, projects } from "./content.js";
 import {
   Button,
   TextLink,
   SectionIntro,
   Artwork,
-  Icon,
   ProjectList,
   PartnershipCTA,
 } from "./components.jsx";
 export default function Home({ hero }) {
-  const pillars = [programmes[5], programmes[0], programmes[3]];
+  const page = useRef(null);
+  useEffect(() => {
+    let disposed = false, cleanup;
+    import('./home-scroll-engine.js').then(({ mountHomeScrollMotion }) => {
+      if (!disposed) cleanup = mountHomeScrollMotion(page.current);
+    }).catch(() => { /* Progressive enhancement: the complete page stays usable. */ });
+    return () => { disposed = true; cleanup?.(); };
+  }, []);
   return (
-    <>
-      <section className="home-intro container">
+    <div ref={page} className="home-page">
+      <section className="home-intro-surface">
+      <div className="home-intro container">
         <div>
-          <p className="eyebrow">Fundacja Regina Purpurea Fundus</p>
           <h1>
-            Od ponad 20 lat
-            <br />
-            działamy na rzecz
-            <br />
-            <em>wspólnego rozwoju.</em>
+            <span className="home-title-name">Fundacja Regina Purpurea Fundus</span>{" "}
+            od ponad 20 lat działamy na rzecz rozwoju społecznego i gospodarczego{" "}
+            <em>Polski i społeczności międzynarodowej.</em>
           </h1>
         </div>
         <div className="home-intro-aside">
           <span className="intro-marker">
             Polska · Współpraca międzynarodowa
           </span>
-          <p>
-            Wspieramy rozwój społeczny i gospodarczy Polski i społeczności
-            międzynarodowej.
-          </p>
           <p className="muted">
             Wspieramy edukację zawodową, transformację technologiczną
             przedsiębiorstw oraz międzynarodową współpracę społeczną.
           </p>
-          <Button href="/dzialania/">Poznaj nasze programy</Button>
+          <div className="home-programme-cta">
+            <span className="home-programme-name">ACCELERATE POLAND</span>
+            <Button href={projects[0].url} external>Poznaj nasze programy</Button>
+          </div>
         </div>
+      </div>
       </section>
       {hero}
       <section className="container section mission-intro">
@@ -49,54 +55,27 @@ export default function Home({ hero }) {
             <em>Wspólne możliwości.</em>
           </h2>
           <p>{org.intro}</p>
+          <p>{org.purpose}</p>
           <TextLink href="/misja/">Poznaj naszą misję</TextLink>
         </div>
       </section>
-      <section className="programmes-section" id="obszary">
-        <div className="container section">
-          <SectionIntro
-            eyebrow="Obszary zaangażowania"
-            title={
-              <>
-                Od kompetencji
-                <br />
-                do działania.
-              </>
-            }
-          >
-            <p>
-              Nasze programy łączą doradztwo, szkolenia i projekty badawcze, aby
-              dostarczać praktyczne rozwiązania dla przedsiębiorstw i
-              społeczności.
-            </p>
-          </SectionIntro>
-          <div className="pillar-grid">
-            {pillars.map((p, i) => (
-              <article key={p.id}>
-                <div className="pillar-heading">
-                  <span>0{i + 1}</span>
-                  <Icon name={p.icon} />
-                </div>
-                <h3>{p.title}</h3>
-                <p>{p.text}</p>
-                <a
-                  href={"/dzialania/#" + p.id}
-                  className="pillar-art"
-                  aria-label={"Poznaj: " + p.title}
-                >
-                  <Artwork name={p.image} />
-                </a>
-                <TextLink href={"/dzialania/#" + p.id}>
-                  Dowiedz się więcej
-                </TextLink>
-              </article>
-            ))}
-          </div>
-          <div className="section-end">
-            <TextLink href="/dzialania/">Wszystkie obszary działania</TextLink>
-          </div>
+      <section className="container section accelerate-banner">
+        <div>
+          <p className="eyebrow">Poznaj nasze programy</p>
+          <h2 className="accelerate-brand-heading">
+            <img src={projects[0].logo} alt="ACCELERATE POLAND" width="1200" height="792" loading="lazy" decoding="async" />
+          </h2>
+          <Button href={projects[0].url} external>
+            Poznaj nasze programy
+          </Button>
         </div>
+        <Artwork
+          name="technology"
+          alt="Ilustracja współpracy przy projektowaniu i wdrażaniu technologii."
+        />
       </section>
+      <PhotoPillars />
+      <ProgrammeExplorer />
       <section className="projects-band">
         <div className="container section">
           <SectionIntro
@@ -118,24 +97,7 @@ export default function Home({ hero }) {
           <TextLink href="/projekty/">Poznaj wszystkie projekty</TextLink>
         </div>
       </section>
-      <section className="container section accelerate-banner">
-        <div>
-          <p className="eyebrow">Poznaj nasze programy</p>
-          <h2>
-            ACCELERATE
-            <br />
-            <em>POLAND</em>
-          </h2>
-          <Button href="https://www.acceleratepoland.org.pl" external>
-            Przejdź do projektu
-          </Button>
-        </div>
-        <Artwork
-          name="technology"
-          alt="Ilustracja współpracy przy projektowaniu i wdrażaniu technologii."
-        />
-      </section>
       <PartnershipCTA />
-    </>
+    </div>
   );
 }

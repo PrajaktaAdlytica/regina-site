@@ -3,6 +3,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   ArrowUp,
+  ArrowDownRight,
   List,
   X,
   Target,
@@ -24,6 +25,7 @@ import {
 } from "@phosphor-icons/react";
 import { organisation as org, programmes, projects } from "./content.js";
 export const iconSet = {
+  ArrowDownRight,
   Target,
   Stack,
   Briefcase,
@@ -102,6 +104,22 @@ const nav = [
   ["/kontakt/", "Kontakt", "Envelope"],
 ];
 export function Header({ path }) {
+  const header = useRef(null);
+  useEffect(() => {
+    const style = document.documentElement.style;
+    const previous = style.getPropertyValue('--site-header-height');
+    const measure = () => style.setProperty('--site-header-height', `${header.current?.getBoundingClientRect().height || 0}px`);
+    measure();
+    const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(measure) : null;
+    if (header.current) observer?.observe(header.current);
+    window.addEventListener('resize', measure);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener('resize', measure);
+      if (previous) style.setProperty('--site-header-height', previous);
+      else style.removeProperty('--site-header-height');
+    };
+  }, []);
   const [open, setOpen] = useState(false),
     dialog = useRef(null),
     trigger = useRef(null);
@@ -124,7 +142,7 @@ export function Header({ path }) {
       <a href="#main" className="site-skip">
         Przejdź do treści
       </a>
-      <header className="site-header">
+      <header className="site-header" ref={header}>
         <div className="container header-inner">
           <a
             className="site-logo"

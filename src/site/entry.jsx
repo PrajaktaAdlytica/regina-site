@@ -3,6 +3,8 @@ import { createRoot, hydrateRoot } from "react-dom/client";
 import Site from "./App.jsx";
 import "./styles.css";
 import "./pages.css";
+import "./editorial.css";
+import "./sticky-header.css";
 const root = document.getElementById("root");
 const app = <Site path={location.pathname} />;
 if (root.hasChildNodes()) hydrateRoot(root, app);

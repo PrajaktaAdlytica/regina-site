@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+evidence
+work
+*.log
+*.tar.gz
+*.tgz
+.env*

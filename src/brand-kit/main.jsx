@@ -784,7 +784,7 @@ export default function App() {
             </div>
             <a
               className="rp-textlink"
-              href="https://www.acceleratepoland.org.pl"
+              href="https://www.acceleratepoland.org"
             >
               Przejdź do projektu <ArrowUpRight size={20} />
             </a>

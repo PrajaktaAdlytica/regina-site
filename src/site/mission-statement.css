@@ -1,0 +1,70 @@
+/* Decorative hover, not a clickable card. Keep GSAP's child translate independent. */
+.mission-statement {
+  position: relative;
+  isolation: isolate;
+}
+
+.mission-statement::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--rp-plum);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 240ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.mission-statement .statement-bottom {
+  position: relative;
+}
+
+.mission-statement .statement-bottom::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--rp-inverse);
+  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 240ms ease;
+}
+
+.mission-statement .statement-bottom > svg {
+  transform-origin: center;
+  transition: transform 240ms ease, color 240ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mission-statement:hover::before {
+    transform: scaleX(1);
+    transition-duration: 650ms;
+  }
+
+  .mission-statement:hover .statement-bottom::before {
+    transform: scaleX(1);
+    transition-duration: 800ms;
+  }
+
+  .mission-statement:hover .statement-bottom > svg {
+    color: var(--rp-inverse);
+    transform: rotate(-8deg) scale(1.08);
+    transition-duration: 420ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mission-statement::before,
+  .mission-statement .statement-bottom::before,
+  .mission-statement .statement-bottom > svg {
+    transition: none !important;
+  }
+
+  .mission-statement:hover .statement-bottom > svg {
+    transform: none;
+  }
+}

@@ -1,0 +1,85 @@
+/* Decorative hover only: retain reading semantics and GSAP's independent translate. */
+.partnership-page :is(.partner-grid, .offer-grid) > article {
+  position: relative;
+  isolation: isolate;
+}
+.partnership-page :is(.partner-grid, .offer-grid) > article::before {
+  content: "";
+  position: absolute;
+  inset: -1px -12px -16px;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--rp-blush);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms var(--rp-ease);
+}
+.partnership-page .partner-grid > article:nth-child(even)::before {
+  transform-origin: right;
+}
+.partnership-page .offer-grid > article::before {
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+.partnership-page .partner-grid > article::after {
+  content: "";
+  position: absolute;
+  inset: -1px 0 auto;
+  height: 2px;
+  background: var(--rp-wine);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms var(--rp-ease);
+  pointer-events: none;
+}
+.partnership-page :is(.partner-grid, .offer-grid) > article > :is(svg, img, h3),
+.partnership-page .collage-hero figure > img,
+.partnership-page .partnership-opening > .human-art,
+.partnership-page .network-block > img {
+  transition: transform 420ms var(--rp-ease), color 240ms ease, box-shadow 420ms ease;
+}
+.partnership-page .network-block:focus-within > img {
+  transform: translateY(-5px);
+  box-shadow: var(--rp-shadow-raised);
+}
+@media (hover: hover) and (pointer: fine) {
+  .partnership-page :is(.partner-grid, .offer-grid) > article:hover::before,
+  .partnership-page .partner-grid > article:hover::after {
+    transform: scale(1);
+    transition-duration: 420ms;
+  }
+  .partnership-page :is(.partner-grid, .offer-grid) > article:hover > h3 {
+    color: var(--rp-wine);
+    transform: translateX(6px);
+  }
+  .partnership-page .partner-grid > article:hover > svg {
+    transform: translateY(-6px) rotate(-6deg);
+  }
+  .partnership-page .offer-grid > article:hover > img {
+    transform: translateX(6px) translateY(-4px);
+  }
+  .partnership-page .collage-hero figure:hover > img,
+  .partnership-page .partnership-opening:hover > .human-art {
+    transform: translateY(-6px) scale(1.015);
+  }
+  .partnership-page .network-block:hover > img {
+    transform: translateY(-5px);
+    box-shadow: var(--rp-shadow-raised);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .partnership-page :is(.partner-grid, .offer-grid) > article::before,
+  .partnership-page .partner-grid > article::after,
+  .partnership-page :is(.partner-grid, .offer-grid) > article > :is(svg, img, h3),
+  .partnership-page .collage-hero figure > img,
+  .partnership-page .partnership-opening > .human-art,
+  .partnership-page .network-block > img {
+    transition: none;
+  }
+  .partnership-page :is(.partner-grid, .offer-grid) > article:hover > :is(svg, img, h3),
+  .partnership-page .collage-hero figure:hover > img,
+  .partnership-page .partnership-opening:hover > .human-art,
+  .partnership-page .network-block:is(:hover, :focus-within) > img {
+    transform: none;
+  }
+}
