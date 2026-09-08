@@ -10,7 +10,6 @@ import "./projects.css";
 import "./partnership-scroll.css";
 import "./partnership-hover.css";
 import "./contact.css";
-import ContactMap from "./ContactMap.jsx";
 import { EnvelopeSimple, Phone, ArrowUpRight, MapPin } from "@phosphor-icons/react";
 import {
   PageIntro,
@@ -348,13 +347,12 @@ export function Contact() {
           <dl>
             <div className="contact-detail-row"><dt><EnvelopeSimple size={22} aria-hidden="true"/>Email</dt><dd><a href={"mailto:" + org.email}>{org.email}<ArrowUpRight size={22} aria-hidden="true"/></a></dd></div>
             <div className="contact-detail-row"><dt><Phone size={22} aria-hidden="true"/>Telefon</dt><dd><a href={"tel:" + org.telephone}>{org.phone}<ArrowUpRight size={22} aria-hidden="true"/></a></dd></div>
-            <div className="contact-detail-row"><dt><MapPin size={22} aria-hidden="true"/>Siedziba</dt><dd><a href="#lokalizacja">{org.city}<ArrowUpRight size={22} aria-hidden="true"/></a></dd></div>
+            <div className="contact-detail-row"><dt><MapPin size={22} aria-hidden="true"/>Siedziba</dt><dd>{org.city}</dd></div>
           </dl>
           <div className="contact-registration"><p>{org.name}</p><dl>{[['KRS',org.krs],['NIP',org.nip],['REGON',org.regon]].map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
         </div>
         <div className="contact-form-wrap" id="wiadomosc"><ContactForm /></div>
       </section>
-      <ContactMap />
       <section className="contact-faq container section">
         <header><p className="eyebrow">Przed pierwszą rozmową</p><h2>Warto<br /><em>wiedzieć.</em></h2></header>
         <Accordion
@@ -410,7 +408,6 @@ export function Privacy() {
           Linki do projektów prowadzą do odrębnych witryn. Korzystanie z nich
           może podlegać zasadom prywatności ich operatorów.
         </p>
-        <p>Interaktywna mapa na stronie Kontakt ładuje się dopiero po wybraniu „Włącz mapę”. Wtedy przeglądarka łączy się z OpenStreetMap, którego operator otrzymuje dane techniczne połączenia, w tym adres IP. Możesz wyłączyć mapę przyciskiem pod jej widokiem. <a href="https://osmfoundation.org/wiki/Privacy_Policy">Zasady prywatności OpenStreetMap</a>.</p>
         <h2>Informacje techniczne</h2>
         <p>
           Dostawca hostingu może przetwarzać dane techniczne niezbędne do

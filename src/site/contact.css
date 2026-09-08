@@ -1,5 +1,5 @@
 .contact-page { overflow-x: clip; }
-.contact-page :is(#wiadomosc, #lokalizacja) { scroll-margin-top: 48px; }
+.contact-page #wiadomosc { scroll-margin-top: 48px; }
 .contact-opening { padding-block: 24px 56px; }
 .contact-breadcrumb { display: flex; flex-wrap: wrap; gap: 12px; font-size: 14px; margin-bottom: 40px; color: var(--rp-muted); }
 .contact-breadcrumb [aria-current] { color: var(--rp-wine); }
@@ -9,7 +9,7 @@
 .contact-opening-note { max-width: 410px; padding-bottom: 8px; }
 .contact-opening-note > svg { color: var(--rp-wine); margin-bottom: 20px; }
 .contact-opening-note > p { font-size: 18px; color: var(--rp-muted); margin-bottom: 24px; }
-.contact-page .contact-layout { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 40px; padding-bottom: 80px; }
+.contact-page .contact-layout { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 40px; padding-bottom: 0; }
 .contact-page .contact-details { display: block; min-width: 0; background: var(--rp-plum); color: var(--rp-inverse); padding: 40px 32px; border-radius: 4px 64px 4px 4px; }
 .contact-page .contact-details h2 { font-size: clamp(2.75rem, 4vw, 4rem); max-width: none; }
 .contact-page .contact-details :is(.eyebrow, h2 em) { color: var(--rp-rose); }
@@ -59,7 +59,7 @@
 .contact-map-controls > p { font-size: 14px; color: var(--rp-muted); }
 .contact-map-credit { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 12px; margin-top: 20px; color: var(--rp-muted); }
 .contact-map-credit a { text-decoration: underline; text-underline-offset: 3px; }
-.contact-faq { display: grid; grid-template-columns: minmax(0,.65fr) minmax(0,1.35fr); gap: 64px; }
+.contact-faq { display: grid; grid-template-columns: minmax(0,.65fr) minmax(0,1.35fr); gap: 64px; padding-block: 64px 80px; }
 .contact-faq > header h2 { font-size: clamp(2.75rem, 4vw, 4rem); }
 .contact-faq .site-accordion { min-width: 0; }
 .contact-faq summary { position: relative; isolation: isolate; padding: 24px 12px; }
@@ -92,7 +92,8 @@
   .contact-opening-note { max-width: none; }
   .contact-opening-note > svg { display: none; }
   .contact-opening-note > p { font-size: 16px; margin-bottom: 16px; }
-  .contact-page .contact-layout { padding-bottom: 48px; }
+  .contact-page .contact-layout { padding-bottom: 0; }
+  .contact-faq { padding-block: 48px; }
   .contact-page .contact-detail-row dd { font-size: 16px; }
   .contact-location { padding-block: 48px; }
   .contact-map-frame { height: 340px; border-top-left-radius: 40px; }

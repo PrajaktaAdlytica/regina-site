@@ -12,7 +12,6 @@ export const contactRevealGroups = [
   { anchor: '.form-field:nth-child(odd)', targets: [':scope > label', ':scope > input', ':scope > textarea', ':scope > p'], directions: ['left'] },
   { anchor: '.form-field:nth-child(even)', targets: [':scope > label', ':scope > input', ':scope > textarea', ':scope > p'], directions: ['right'] },
   { anchor: '.contact-form-panel > form', targets: [':scope > .form-privacy', ':scope > .site-button'], directions: ['left', 'right'] },
-  { anchor: '.contact-map-grid', targets: [':scope > .contact-map-copy', ':scope > .contact-map-panel'], directions: ['left', 'right'] },
   { anchor: '.contact-faq > header', targets: [':scope > p', ':scope > h2'], directions: ['left'] },
   { anchor: '.contact-faq details:nth-child(odd)', targets: [':scope > summary', ':scope > p'], directions: ['right'] },
   { anchor: '.contact-faq details:nth-child(even)', targets: [':scope > summary', ':scope > p'], directions: ['left'] },
