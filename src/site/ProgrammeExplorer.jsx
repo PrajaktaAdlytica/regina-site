@@ -12,7 +12,7 @@ export default function ProgrammeExplorer() {
       </div>
       <div className="explorer-overview">
         <figure className="explorer-art">
-          <img src="/site/international.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Ilustracja współpracy: trzy osoby omawiają materiały, w tle glob ziemski." />
+          <img src="/site/activities-collage.webp" width="1254" height="1254" loading="lazy" decoding="async" alt="Kolaż tematyczny: współpraca nad raportami, badania laboratoryjne i dzielenie się wiedzą — obraz wygenerowany z użyciem AI." />
           <figcaption>Wiedza i współpraca na rzecz wspólnego rozwoju.</figcaption>
         </figure>
         <nav className="explorer-links" aria-label="Obszary działania">
