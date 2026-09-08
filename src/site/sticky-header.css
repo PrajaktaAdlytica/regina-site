@@ -16,17 +16,19 @@ html:has([data-page="/misja/"]) { --site-header-height: 92px; }
   border-radius: 4px;
   background: var(--rp-blush);
   color: var(--rp-wine);
-  transition: background-color 240ms var(--rp-ease), border-color 240ms;
+  transition: background-color 180ms, color 180ms, border-color 180ms;
 }
-.site-header .desktop-nav a[href="/kontakt/"]:after { left: 42px; right: 14px; bottom: 6px; }
-.site-header .desktop-nav a[href="/kontakt/"] > svg { opacity: 1; transform: none; }
-.site-header .desktop-nav a[href="/kontakt/"]:focus-visible { background: var(--rp-rose); }
+.site-header .desktop-nav a[href="/kontakt/"]:after { left: 42px; right: 14px; bottom: 6px; background: currentColor; }
+.site-header .desktop-nav a[href="/kontakt/"] > svg { opacity: 1; transform: none; color: inherit; }
+.site-header .desktop-nav a[href="/kontakt/"]:focus-visible { background: var(--rp-wine); color: var(--rp-inverse); border-color: var(--rp-wine); outline: 2px solid var(--rp-wine); outline-offset: 4px; }
 .site-header .menu-trigger { padding: 8px 14px; border: 1px solid var(--rp-rose); border-radius: 4px; gap: 10px; color: var(--rp-wine); background: var(--rp-blush); }
 @media (hover: hover) and (pointer: fine) {
-  .site-header .desktop-nav a[href="/kontakt/"]:hover { background: var(--rp-rose); border-color: var(--rp-wine); }
+  .site-header .desktop-nav a[href="/kontakt/"]:hover { background: var(--rp-wine); color: var(--rp-inverse); border-color: var(--rp-wine); }
+  .site-header .desktop-nav a[href="/kontakt/"]:hover > svg { transform: translateY(-1px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .site-header .desktop-nav a[href="/kontakt/"] { transition: none; }
+  .site-header .desktop-nav a[href="/kontakt/"] > svg { transition: none; transform: none!important; }
 }
 /* The homepage sculpture's own sticky stage must sit below navigation. */
 [data-page="/"] .enhanced .hero-sticky {
