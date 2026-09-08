@@ -58,7 +58,7 @@ export function PartnershipCollageHero() {
 export function ConnectedCollage() {
   return <section className="connected-collage container" aria-label="Obszary łączące nasze inicjatywy">
     <ol>{editorialPillars.map(p=><li key={p.id}><a className="connected-heading" href={`/dzialania/#${p.id}`}><span className="connected-number">{p.number}<ArrowRight size={24} aria-hidden="true"/></span><h2>{p.title}</h2></a></li>)}</ol>
-    <img className="connected-art" src="/site/projects-collage.webp" width="2172" height="724" loading="lazy" alt="Koncepcyjny kolaż edukacji, międzynarodowych połączeń i wspólnej drogi. Mapa nie oznacza lokalizacji projektów."/>
+    <img className="connected-art" src="/site/projects-collage-v2.webp" width="2172" height="724" loading="lazy" alt="Kolaż edukacji, międzynarodowych połączeń i współpracy społecznej: kobieta i mężczyzna na wózku wspólnie pracują przy stole. Mapa nie oznacza lokalizacji projektów."/>
     <div className="connected-links">{editorialPillars.map(p=><TextLink key={p.id} href={`/dzialania/#${p.id}`}>Poznaj obszar</TextLink>)}</div>
   </section>;
 }

@@ -5,9 +5,7 @@ export const projectsRevealGroups = [
   { anchor: '.connected-collage li:nth-child(even)', targets: [':scope > a'], directions: ['right'] },
   { anchor: '.connected-collage', targets: [':scope > .connected-art'], directions: ['right'] },
   { anchor: '.connected-links', targets: [':scope > a'], directions: ['left', 'right', 'left'] },
-  { anchor: '.project-reveal-row:nth-child(odd)', targets: [':scope > .project-panel'], directions: ['left'] },
-  { anchor: '.project-reveal-row:nth-child(even)', targets: [':scope > .project-panel'], directions: ['right'] },
-  { anchor: '.project-context', targets: [':scope > div', ':scope > .human-art'], directions: ['left', 'right'] },
+  { anchor: '.projects-directory .project-list', targets: [':scope > a'], directions: ['left', 'right', 'left'] },
   { anchor: '.cta-inner', targets: [':scope > .eyebrow', ':scope > h2', ':scope > div'], directions: ['left', 'right', 'left'] },
 ].map(group => ({ ...group, reverseHorizontal: true, distance: 96, compactDistance: 28,
   duration: 1.05, compactDuration: 0.65, stagger: 100, ease: 'power2.out' }));

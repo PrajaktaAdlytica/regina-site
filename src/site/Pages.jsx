@@ -14,6 +14,7 @@ import ContactMap from "./ContactMap.jsx";
 import { EnvelopeSimple, Phone, ArrowUpRight, MapPin } from "@phosphor-icons/react";
 import {
   PageIntro,
+  ProjectList,
   SectionIntro,
   PartnershipCTA,
   Button,
@@ -175,44 +176,10 @@ export function Projects() {
       </section>
       <ConnectedCollage />
       <section
-        className="container project-showcase"
+        className="container section projects-directory"
         aria-label="Projekty fundacji"
       >
-        {projects.map((p) => (
-          <div key={p.id} className="project-reveal-row">
-          <article className={"project-panel " + p.theme}>
-            <div className="project-panel-top">
-              <span>Projekt / {p.number}</span>
-              <div className="project-brand-stage" data-brand={p.id}>
-                <img src={p.logo} alt={`Logo ${p.title}`} loading="lazy" decoding="async" />
-              </div>
-            </div>
-            <h2>{p.title}</h2>
-            <div className="project-panel-bottom">
-              <span>{p.domain}</span>
-              <Button href={p.url} external secondary={p.theme === "stone"}>
-                Odwiedź stronę projektu
-              </Button>
-            </div>
-          </article>
-          </div>
-        ))}
-      </section>
-      <section className="container section project-context">
-        <div>
-          <p className="eyebrow">Wspólne obszary</p>
-          <h2>
-            Edukacja. Innowacje.
-            <br />
-            Współpraca.
-          </h2>
-          <p>{org.intro}</p>
-          <TextLink href="/dzialania/">Poznaj działania fundacji</TextLink>
-        </div>
-        <Artwork
-          name="international"
-          alt="Ilustracja międzynarodowej wymiany wiedzy i współpracy."
-        />
+        <ProjectList />
       </section>
       <PartnershipCTA />
     </div>
