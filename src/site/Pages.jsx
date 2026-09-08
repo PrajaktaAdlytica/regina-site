@@ -87,7 +87,7 @@ export function Activities() {
     return () => { disposed = true; cleanup?.(); };
   }, []);
   const orderedProgrammes = [programmes[5], programmes[3], programmes[2], programmes[0], programmes[1], programmes[4]];
-  const photos = {edukacja:"students",wspolpraca:"meeting",spolecznosc:"mentoring",innowacje:"laboratory",przedsiebiorcy:"meeting",badania:"students"};
+  const photos = {edukacja:"students",wspolpraca:"meeting",spolecznosc:"mentoring",innowacje:"laboratory",przedsiebiorcy:"business-consultation",badania:"report-analysis"};
   return (
     <div className="activities-page" ref={page}>
       <section className="activities-opening container" aria-labelledby="activities-title">
@@ -517,6 +517,7 @@ export function Legal() {
           fundacji.
         </p>
         <h2 id="fotografie">Fotografie tematyczne</h2>
+        <p>Obrazy w sekcjach „Wsparcie dla przedsiębiorców” i „Badania i publikacje” na stronie Działania zostały wygenerowane z użyciem AI. Przedstawiają fikcyjne sceny konsultacji biznesowych i analizy raportów, nie wydarzenia ani pracowników fundacji.</p>
         <p>Kolaż w sekcji „Działania” na stronie głównej został wygenerowany z użyciem AI. Przedstawia fikcyjne sceny współpracy, badań i edukacji; nie jest dokumentacją wydarzeń fundacji.</p>
         <p>Obraz warsztatu przy sekcji „Wiedza. Ludzie. Wspólne możliwości.” na stronie głównej został wygenerowany z użyciem AI. To scena tematyczna, nie dokumentacja wydarzenia ani zespołu fundacji.</p>
         <p>Zdjęcia edukacji, spotkań i pracy w laboratorium ilustrują tematykę strony. Nie przedstawiają pracowników, partnerów ani uczestników projektów fundacji i nie stanowią dokumentacji jej działalności. Nie przypisujemy im lokalizacji w Polsce.</p>
