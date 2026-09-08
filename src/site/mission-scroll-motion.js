@@ -9,9 +9,6 @@ export const missionRevealGroups = [
   { anchor: '.international-opening', targets: [':scope > .international-copy', ':scope > .cooperation-network'], directions: ['left', 'up'], stagger: 90 },
   { anchor: '.community-feature-heading', targets: [':scope > .eyebrow', ':scope > h2'], directions: ['left', 'down'], stagger: 70 },
   { anchor: '.community-feature-body', targets: [':scope > .community-feature-art', ':scope > .community-feature-copy'], directions: ['left', 'right'], stagger: 90 },
-  // The same GSAP enter/enterBack state replays the photo's frame/zoom in CSS.
-  // Only the caption uses the shared slide, leaving the frame stationary.
-  { anchor: '.city-context', targets: [':scope > figure > figcaption'], directions: ['up'], end: 'bottom 30%' },
   { anchor: '.cta-inner', targets: [':scope > .eyebrow', ':scope > h2', ':scope > div'], directions: ['down', 'up', 'right'], stagger: 80 },
 ].map(group => ({
   ...group,

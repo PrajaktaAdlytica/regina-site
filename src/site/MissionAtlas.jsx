@@ -7,10 +7,10 @@ import './mission-atlas.css';
 export const missionChapters = [
   { image: 'technology.webp', href: '/dzialania/#innowacje', label: 'Poznaj działania innowacyjne', alt: 'Ilustracja wspólnej pracy nad technologią.' },
   { image: 'community.webp', href: '/dzialania/#spolecznosc', label: 'Poznaj projekty społeczne', alt: 'Ilustracja współpracy i integracji społecznej.' },
-  { image: 'laboratory.jpg', photo: true, href: '/dzialania/#badania', label: 'Poznaj obszar badań', alt: 'Praca w laboratorium — fotografia tematyczna.' },
+  { image: 'research-sketch.webp', href: '/dzialania/#badania', label: 'Poznaj obszar badań', alt: 'Szkic badaczy wspólnie analizujących materiały w laboratorium.' },
   { image: 'education.webp', href: '/dzialania/#edukacja', label: 'Poznaj programy edukacyjne', alt: 'Ilustracja praktycznej nauki i rozwoju kompetencji.' },
   { image: 'international.webp', href: '/dzialania/#wspolpraca', label: 'Poznaj współpracę międzynarodową', alt: 'Ilustracja wymiany wiedzy ponad granicami.' },
-  { image: 'meeting.jpg', photo: true, href: '/partnerstwo/', label: 'Poznaj możliwości partnerstwa', alt: 'Spotkanie zespołu — fotografia tematyczna współpracy.' },
+  { image: 'institutional-sketch.webp', href: '/partnerstwo/', label: 'Poznaj możliwości partnerstwa', alt: 'Szkic przedstawicieli fundacji i instytucji omawiających wspólny projekt.' },
 ];
 const number = index => String(index + 1).padStart(2, '0');
 

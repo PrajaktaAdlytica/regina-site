@@ -73,7 +73,6 @@ export function Mission() {
         </div>
         </div>
       </section>
-      <section className="city-context" id="warszawa"><figure><div className="city-photo-window"><img src="/site/warsaw.webp" width="1600" height="900" alt="Panorama Warszawy nad Wisłą z Mostem Świętokrzyskim." loading="lazy"/></div><figcaption><span>Warszawa, Polska — kontekst miejsca.</span><a href="/informacje/">Fot. Arne Müseler · CC BY-SA 3.0 DE</a></figcaption></figure></section>
       <PartnershipCTA />
     </div>
   );
