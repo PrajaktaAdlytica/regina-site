@@ -4,7 +4,8 @@ import { headerOffset } from './header-offset.js';
 export const homeRevealGroups = [
   { anchor: '.home-intro', targets: [':scope > div:first-child', '.home-intro-aside'], directions: ['down', 'up'] },
   // HeroJourney already owns its scroll-driven sculpture and chapter motion.
-  { anchor: '.mission-intro', targets: [':scope > .eyebrow', ':scope > .mission-intro-photo', ':scope > .mission-intro-copy'], directions: ['up', 'down', 'right'] },
+  { anchor: '.mission-intro', targets: [':scope > .eyebrow', ':scope > .mission-intro-copy'], directions: ['up', 'right'] },
+  { anchor: '.mission-intro-media', targets: [':scope > .mission-intro-photo'], directions: ['down'], start: 'top 85%', end: 'bottom 15%', distance: 64, duration: 0.9 },
   { anchor: '.photo-pillars', targets: [':scope > article'], directions: ['up'], stagger: 100 },
   { anchor: '.explorer-heading', targets: [':scope > div', ':scope > p'], directions: ['left', 'right'] },
   { anchor: '.explorer-mosaic', targets: [':scope > .explorer-column'], directions: ['up', 'down', 'up'], stagger: 80 },
@@ -100,7 +101,7 @@ export function installPageScrollMotion(root, { gsap, ScrollTrigger, Lenis }, wi
       const reset = () => { group.anchor.dataset.scrollReveal = 'ready'; cancel(group); };
       group.anchor.dataset.scrollReveal = 'ready';
       triggers.push(ScrollTrigger.create({
-        trigger: group.anchor, start: 'top bottom', end: group.spec.end ?? 'bottom top',
+        trigger: group.anchor, start: group.spec.start ?? 'top bottom', end: group.spec.end ?? 'bottom top',
         onEnter: () => play(false), onEnterBack: () => play(true),
         onLeave: reset, onLeaveBack: reset,
         // Match the currently visible content after font/layout refreshes.

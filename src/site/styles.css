@@ -408,11 +408,15 @@ summary:focus-visible {
   margin-top: 12px;
 }
 .mission-intro {
+  width: 100%;
+  padding-inline: 24px;
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
+  grid-template-columns: 1.15fr 1fr;
   align-items: center;
   gap: 32px 56px;
 }
+.mission-intro-media { min-width: 0; }
+.mission-intro-copy { padding-right: clamp(0px, 3vw, 56px); }
 .mission-intro > .eyebrow {
   grid-column: 1 / -1;
   margin: 0;
@@ -1008,6 +1012,7 @@ summary:focus-visible {
     grid-template-columns: 1fr;
     gap: 28px;
   }
+  .mission-intro-copy { padding-right: 0; }
   .mission-intro h2 {
     margin-bottom: 24px;
   }
