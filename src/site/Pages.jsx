@@ -278,7 +278,7 @@ export function Partnership() {
               "Nasze programy łączą doradztwo, szkolenia i projekty badawcze.",
             ],
             [
-              "Wsparcie w pozyskiwaniu finansowania",
+              "Wsparcie finansowe",
               "Oferujemy partnerom wsparcie w pozyskiwaniu finansowania wspólnych inicjatyw.",
             ],
           ].map(([title, text], i) => (
