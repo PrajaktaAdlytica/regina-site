@@ -19,16 +19,23 @@ export default function HeroJourney() {
   const [chapter, setChapter] = useState(0),
     [enhanced, setEnhanced] = useState(false),
     [motion, setMotion] = useState(true),
+    [reduced, setReduced] = useState(false),
     [scene, setScene] = useState("loading");
   useEffect(() => {
-    const media = matchMedia(
-      "(min-width: 900px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)",
-    );
-    const update = () =>
-      setEnhanced(media.matches && !navigator.connection?.saveData);
+    const viewport = matchMedia("(min-width: 700px) and (min-height: 520px)");
+    const preference = matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      setEnhanced(viewport.matches && !navigator.connection?.saveData);
+      setReduced(preference.matches);
+      if (preference.matches) setMotion(false);
+    };
     update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
+    viewport.addEventListener("change", update);
+    preference.addEventListener("change", update);
+    return () => {
+      viewport.removeEventListener("change", update);
+      preference.removeEventListener("change", update);
+    };
   }, []);
   useEffect(() => {
     if (!enhanced) return;
@@ -88,7 +95,7 @@ export default function HeroJourney() {
               <Suspense fallback={null}>
                 <Sculpture
                   progress={progress}
-                  motion={motion}
+                  motion={motion && !reduced}
                   onState={setScene}
                 />
               </Suspense>
@@ -111,10 +118,15 @@ export default function HeroJourney() {
             {enhanced && scene !== "failed" && (
               <button
                 onClick={() => setMotion((v) => !v)}
-                aria-pressed={!motion}
+                aria-pressed={!motion || reduced}
+                disabled={reduced}
               >
-                {motion ? <Pause size={16} /> : <Play size={16} />}{" "}
-                {motion ? "Zatrzymaj ruch" : "Włącz ruch"}
+                {motion && !reduced ? <Pause size={16} /> : <Play size={16} />}{" "}
+                {reduced
+                  ? "Ograniczony ruch"
+                  : motion
+                    ? "Zatrzymaj ruch"
+                    : "Włącz ruch"}
               </button>
             )}
           </div>

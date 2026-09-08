@@ -34,7 +34,7 @@ test('Anchor and sculpture offsets follow the measured header, including mobile 
   assert.match(engine,/anchors: \{ offset: -headerOffset\(win\) \}/);
   const hero=fs.readFileSync('src/site/HeroJourney.jsx','utf8');
   assert.match(hero,/headerOffset\(\) - rect.top/);
-  assert.match(hero,/min-height: 700px/);
+  assert.match(hero,/min-height: 520px/);
 });
 
 test('Navbar is compact across routes without changing the official logo or hover system', () => {

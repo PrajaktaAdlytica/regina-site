@@ -22,5 +22,5 @@ test('contact UI honestly prepares a draft; no mock sent confirmation',()=>{
  const html=htmlFor('/kontakt/');assert.match(html,/Przygotuj wiadomość/);assert.match(html,/Nic nie zostanie wysłane automatycznie/);assert.doesNotMatch(html,/Wiadomość została wysłana/);for(const name of ['name','email','subject','message'])assert.ok(html.includes(`name="${name}"`));
 });
 test('hero supports reduced-motion/mobile fallbacks and agreed direction',()=>{
- const js=fs.readFileSync('src/site/HeroJourney.jsx','utf8');assert.match(js,/prefers-reduced-motion: no-preference/);assert.match(js,/Zatrzymaj ruch/);assert.match(js,/\/site\/\$\{current.image\}\.webp/);const css=fs.readFileSync('src/site/styles.css','utf8');assert.match(css,/button-wipe/);assert.match(css,/\.desktop-nav a.*svg/);assert.match(css,/prefers-reduced-motion/);
+ const js=fs.readFileSync('src/site/HeroJourney.jsx','utf8');assert.match(js,/min-width: 700px/);assert.match(js,/min-height: 520px/);assert.match(js,/prefers-reduced-motion: reduce/);assert.match(js,/motion=\{motion && !reduced\}/);assert.match(js,/Ograniczony ruch/);assert.match(js,/Zatrzymaj ruch/);assert.match(js,/\/site\/\$\{current.image\}\.webp/);const css=fs.readFileSync('src/site/styles.css','utf8');assert.match(css,/button-wipe/);assert.match(css,/\.desktop-nav a.*svg/);assert.match(css,/prefers-reduced-motion/);
 });
