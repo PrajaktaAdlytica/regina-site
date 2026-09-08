@@ -62,7 +62,6 @@ export default function MissionAtlas() {
     <SectionIntro eyebrow="Kierunki zaangażowania" title={<>Sześć celów.<br /><em>Wspólna odpowiedzialność.</em></>}><p>{org.purpose}</p></SectionIntro>
     <div className="atlas-layout">
       <div className="atlas-navigation">
-        <p className="atlas-instruction">Wybierz cel. Poznaj kierunek działania.</p>
         <div className="atlas-tabs" role="tablist" aria-label="Cele fundacji">
           {goals.map(([icon, title], index) => <button key={title} type="button" role="tab"
             id={`mission-tab-${index}`} aria-controls={`mission-panel-${index}`} aria-selected={active === index}

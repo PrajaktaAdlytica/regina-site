@@ -278,6 +278,8 @@ summary:focus-visible {
 }
 .site-button {
   display: inline-grid;
+  appearance: none;
+  padding: 0;
   position: relative;
   overflow: hidden;
   min-height: 56px;
@@ -298,6 +300,7 @@ summary:focus-visible {
   padding: 16px 24px;
 }
 .site-button .button-wipe {
+  pointer-events: none;
   background: var(--rp-wine-hover);
   clip-path: inset(0 0 0 100%);
   transition: clip-path 0.24s var(--ease);

@@ -59,7 +59,6 @@ export function Mission() {
           name="community"
           alt="Ilustracja ludzi wspólnie pracujących na rzecz społeczności."
           />
-          <figcaption>Ilustracja koncepcyjna</figcaption>
         </figure>
         <div className="community-feature-copy">
           <p>

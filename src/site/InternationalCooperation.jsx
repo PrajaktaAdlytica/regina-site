@@ -38,7 +38,6 @@ export default function InternationalCooperation() {
             <div aria-live="polite" aria-atomic="true"><span className="cooperation-selection-label">Porozmawiajmy o współpracy</span><h3 key={region}>{region}</h3></div>
             <a href={regionEnquiry(region)} aria-label={`Zapytaj o współpracę: ${region}`} className="cooperation-enquiry"><span>Nawiąż kontakt</span><ArrowUpRight size={24} aria-hidden="true"/></a>
           </div>
-          <p className="international-note">Wybierz region. Schemat współpracy — nie mapa lokalizacji projektów.</p>
         </div>
       </div>
     </div>
