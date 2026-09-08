@@ -13,7 +13,7 @@ export const homeRevealGroups = [
   { anchor: '.explorer-accordion', targets: [':scope > h3'], directions: ['up'] },
   { anchor: '.projects-band .section-intro', targets: [':scope > div'], directions: ['left', 'right'] },
   { anchor: '.project-list', targets: [':scope > a'], directions: ['right'], stagger: 95 },
-  { anchor: '.accelerate-banner', targets: [':scope > div', ':scope > .human-art'], directions: ['left', 'right'], stagger: 90 },
+  { anchor: '.accelerate-banner', targets: [':scope > .accelerate-copy', ':scope > .accelerate-map-panel'], directions: ['left', 'right'], stagger: 90 },
   { anchor: '.cta-inner', targets: [':scope > .eyebrow', ':scope > h2', ':scope > div'], directions: ['down', 'up', 'right'], stagger: 80 },
 ];
 

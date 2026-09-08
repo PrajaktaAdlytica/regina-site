@@ -6,7 +6,6 @@ import {
   Button,
   TextLink,
   SectionIntro,
-  Artwork,
   ProjectList,
   PartnershipCTA,
 } from "./components.jsx";
@@ -26,7 +25,7 @@ export default function Home({ hero }) {
         <div>
           <h1>
             <span className="home-title-name">Fundacja Regina Purpurea Fundus</span>{" "}
-            od ponad 20 lat działamy na rzecz rozwoju społecznego i gospodarczego{" "}
+            Od ponad 20 lat działamy na rzecz rozwoju społecznego i gospodarczego{" "}
             <em>Polski i społeczności międzynarodowej.</em>
           </h1>
         </div>
@@ -59,20 +58,20 @@ export default function Home({ hero }) {
           <TextLink href="/misja/">Poznaj naszą misję</TextLink>
         </div>
       </section>
-      <section className="container section accelerate-banner">
-        <div>
-          <p className="eyebrow">Poznaj nasze programy</p>
-          <h2 className="accelerate-brand-heading">
+      <section className="container accelerate-banner" id="accelerate-poland" aria-labelledby="accelerate-title">
+        <div className="accelerate-copy">
+          <p className="eyebrow">Inicjatywa na rzecz cyfrowego rozwoju Polski</p>
+          <h2 className="accelerate-brand-heading" id="accelerate-title">
             <img src={projects[0].logo} alt="ACCELERATE POLAND" width="1200" height="792" loading="lazy" decoding="async" />
           </h2>
-          <Button href={projects[0].url} external>
-            Poznaj nasze programy
+          <p className="accelerate-description">Łączymy administrację publiczną, biznes, naukę, startupy, technologie i kapitał, aby przyspieszać rozwój cyfrowy i gospodarczy Polski.</p>
+          <Button href={projects[0].url} external secondary>
+            Poznaj inicjatywę
           </Button>
         </div>
-        <Artwork
-          name="technology"
-          alt="Ilustracja współpracy przy projektowaniu i wdrażaniu technologii."
-        />
+        <div className="accelerate-map-panel" role="img" aria-label="Kontur Polski — krajowy zasięg inicjatywy Accelerate Poland">
+          <span className="accelerate-map" aria-hidden="true" />
+        </div>
       </section>
       <PhotoPillars />
       <ProgrammeExplorer />

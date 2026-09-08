@@ -557,9 +557,58 @@ summary:focus-visible {
 }
 .accelerate-banner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 64px;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: stretch;
+  margin-block: 32px 96px;
+  background: #fff;
+  overflow: hidden;
+}
+.accelerate-copy {
+  padding: clamp(32px, 4.5vw, 72px);
+  align-self: center;
+}
+.accelerate-copy .eyebrow {
+  max-width: 32ch;
+  margin-bottom: 28px;
+}
+.accelerate-description {
+  max-width: 40ch;
+  margin-top: 28px;
+  font-size: 17px;
+  line-height: 1.75;
+}
+.accelerate-map-panel {
+  position: relative;
+  min-height: 510px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 75% 25%, #b14b43, transparent 65%), #8c292a;
+}
+.accelerate-map-panel::before {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  border: 1px solid #ffffff24;
+  background-image: linear-gradient(#ffffff08 1px, transparent 1px), linear-gradient(90deg, #ffffff08 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.accelerate-map-panel::after {
+  content: "";
+  position: absolute;
+  width: 76%;
+  aspect-ratio: 1;
+  border: 1px solid #ffffff16;
+  border-radius: 50%;
+}
+.accelerate-map {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 140%;
+  aspect-ratio: 800 / 480;
+  background: #fff;
+  mask: url('/visual-library/poland-outline.svg') center / contain no-repeat;
 }
 .accelerate-banner .site-button {
   margin-top: 32px;
@@ -568,8 +617,8 @@ summary:focus-visible {
   width: 100%;
 }
 .accelerate-banner .accelerate-brand-heading {
-  width: min(100%, 340px);
-  padding: 20px;
+  width: min(100%, 230px);
+  padding: 0;
   background: #fff;
 }
 .accelerate-brand-heading img {
@@ -944,7 +993,15 @@ summary:focus-visible {
   }
   .accelerate-banner {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 0;
+    margin-bottom: 64px;
+  }
+  .accelerate-map-panel {
+    min-height: 0;
+    aspect-ratio: 1.25;
+  }
+  .accelerate-map {
+    width: 120%;
   }
   .cta-inner {
     grid-template-columns: 1fr;
