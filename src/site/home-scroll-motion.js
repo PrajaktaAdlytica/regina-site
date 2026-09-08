@@ -4,7 +4,7 @@ import { headerOffset } from './header-offset.js';
 export const homeRevealGroups = [
   { anchor: '.home-intro', targets: [':scope > div:first-child', '.home-intro-aside'], directions: ['down', 'up'] },
   // HeroJourney already owns its scroll-driven sculpture and chapter motion.
-  { anchor: '.mission-intro', targets: [':scope > .eyebrow', ':scope > .mission-intro-photo', ':scope > .mission-intro-copy'], directions: ['up', 'left', 'right'] },
+  { anchor: '.mission-intro', targets: [':scope > .eyebrow', ':scope > .mission-intro-photo', ':scope > .mission-intro-copy'], directions: ['up', 'down', 'right'] },
   { anchor: '.photo-pillars', targets: [':scope > article'], directions: ['up'], stagger: 100 },
   { anchor: '.explorer-heading', targets: [':scope > div', ':scope > p'], directions: ['left', 'right'] },
   { anchor: '.explorer-mosaic', targets: [':scope > .explorer-column'], directions: ['up', 'down', 'up'], stagger: 80 },
