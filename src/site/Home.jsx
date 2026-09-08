@@ -58,7 +58,7 @@ export default function Home({ hero }) {
           <TextLink href="/misja/">Poznaj naszą misję</TextLink>
         </div>
       </section>
-      <section className="container accelerate-banner" id="accelerate-poland" aria-labelledby="accelerate-title">
+      <section className="accelerate-banner" id="accelerate-poland" aria-labelledby="accelerate-title">
         <div className="accelerate-copy">
           <p className="eyebrow">Inicjatywa na rzecz cyfrowego rozwoju Polski</p>
           <h2 className="accelerate-brand-heading" id="accelerate-title">

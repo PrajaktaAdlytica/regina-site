@@ -559,12 +559,14 @@ summary:focus-visible {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   align-items: stretch;
-  margin-block: 32px 96px;
+  margin: 0;
+  width: 100%;
   background: #fff;
   overflow: hidden;
 }
 .accelerate-copy {
   padding: clamp(32px, 4.5vw, 72px);
+  padding-left: max(5vw, calc((100vw - 1440px) / 2));
   align-self: center;
 }
 .accelerate-copy .eyebrow {
@@ -1035,7 +1037,7 @@ summary:focus-visible {
   .accelerate-banner {
     grid-template-columns: 1fr;
     gap: 0;
-    margin-bottom: 64px;
+    margin: 0;
   }
   .accelerate-map-panel {
     min-height: 0;
