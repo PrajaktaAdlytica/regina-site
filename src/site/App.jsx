@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Header, Footer, CookieNotice } from "./components.jsx";
 import Home from "./Home.jsx";
 import HeroJourney from "./HeroJourney.jsx";
+const HeroLab = React.lazy(() => import('./HeroLab.jsx'));
 import {
   Mission,
   Activities,
@@ -23,7 +24,9 @@ const routes = {
 };
 export default function Site({ path = "/" }) {
   const [heroVariant, setHeroVariant] = useState(null);
+  const [heroLab, setHeroLab] = useState(false);
   useEffect(() => {
+    setHeroLab(new URLSearchParams(location.search).has('hero-lab'));
     const value = Number(new URLSearchParams(location.search).get('hero'));
     if ([1, 2, 3].includes(value)) setHeroVariant(value);
   }, []);
@@ -45,10 +48,9 @@ export default function Site({ path = "/" }) {
     <div id="top" data-page={normalised}>
       <Header path={normalised} />
       <main id="main">
-        {normalised === "/" ? <Home variant={heroVariant} hero={<HeroJourney />} /> : <Page />}
+        {normalised === "/" && heroLab ? <React.Suspense fallback={<p className="container">Ładowanie podglądu…</p>}><HeroLab /></React.Suspense> : normalised === "/" ? <Home variant={heroVariant} hero={<HeroJourney />} /> : <Page />}
       </main>
-      <Footer />
-      <CookieNotice />
+      {!heroLab && <><Footer /><CookieNotice /></>}
     </div>
   );
 }
