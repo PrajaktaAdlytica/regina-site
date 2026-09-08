@@ -87,7 +87,7 @@ export function Activities() {
     return () => { disposed = true; cleanup?.(); };
   }, []);
   const orderedProgrammes = [programmes[5], programmes[3], programmes[2], programmes[0], programmes[1], programmes[4]];
-  const photos = {edukacja:"students",wspolpraca:"meeting",spolecznosc:"mentoring",innowacje:"laboratory",przedsiebiorcy:"business-consultation",badania:"report-analysis"};
+  const photos = {edukacja:"students",wspolpraca:"meeting",spolecznosc:"mentoring",innowacje:"laboratory",przedsiebiorcy:"business-consultation-v2",badania:"report-analysis-v2"};
   return (
     <div className="activities-page" ref={page}>
       <section className="activities-opening container" aria-labelledby="activities-title">
