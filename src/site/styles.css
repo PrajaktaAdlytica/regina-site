@@ -626,6 +626,47 @@ summary:focus-visible {
   height: auto;
   object-fit: contain;
 }
+.accelerate-map {
+  transform: translateY(var(--accelerate-lift, 0px)) scale(var(--accelerate-scale, 1));
+  transition: transform 700ms var(--ease);
+}
+.accelerate-map-panel::before {
+  background-position: var(--accelerate-grid, 0px) 0;
+  border-color: var(--accelerate-frame, #ffffff24);
+  transition: background-position 900ms var(--ease), border-color 500ms ease;
+}
+.accelerate-map-panel::after {
+  transform: scale(var(--accelerate-orbit, 1));
+  border-color: var(--accelerate-frame, #ffffff16);
+  transition: transform 900ms var(--ease), border-color 500ms ease;
+}
+.accelerate-banner:has(.site-button:focus-visible) {
+  --accelerate-lift: -7px;
+  --accelerate-scale: 1.025;
+  --accelerate-grid: 12px;
+  --accelerate-orbit: 1.07;
+  --accelerate-frame: #ffffff50;
+}
+@media (hover: hover) and (pointer: fine) {
+  .accelerate-banner:hover {
+    --accelerate-lift: -7px;
+    --accelerate-scale: 1.025;
+    --accelerate-grid: 12px;
+    --accelerate-orbit: 1.07;
+    --accelerate-frame: #ffffff50;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .accelerate-banner .accelerate-map,
+  .accelerate-banner .accelerate-map-panel::after {
+    transform: none;
+    transition: none;
+  }
+  .accelerate-banner .accelerate-map-panel::before {
+    background-position: 0 0;
+    transition: none;
+  }
+}
 .partnership-cta {
   background: var(--rp-plum);
   color: var(--rp-inverse);
