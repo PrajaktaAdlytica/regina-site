@@ -37,11 +37,13 @@ function BookPage({ active, select, decorative = false }) {
 }
 function BookIntro({ decorative = false }) { return <><Heading id={decorative ? undefined : 'book-title'}/><Intro/>{decorative ? <span className="lab-cta">Poznaj nasze programy <ArrowUpRight size={23}/></span> : <CTA/>}<p className="lab-location">Polska · Współpraca międzynarodowa</p></>; }
 function Book({ active, select, leafRef, turningFrom, completed, turn }) {
-  return <section id="lab-book" className="lab-hero lab-book" aria-labelledby="book-title">
+  const pageChapter = turn >= .5 ? Math.min(2, completed + 1) : completed;
+  return <section id="lab-book" className="lab-hero lab-book" aria-labelledby="book-title" data-chapter={pageChapter}>
     <img className="lab-art lab-book-art" src="/site/hero-lab/book.webp" alt=""/>
-    <div className="lab-book-copy"><BookIntro/></div>
+    <svg className="lab-book-tint" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H580V932C550 864 523 865 465 878C310 905 160 906 0 880Z"/></svg>
+    <div className="lab-book-copy" data-page-chapter={pageChapter}><BookIntro/></div>
     <div className="lab-book-page"><BookPage active={active} select={select}/></div>
-    <div className="lab-book-leaf" ref={leafRef} aria-hidden="true"><div className="lab-leaf-front"><BookPage active={turningFrom} decorative/></div><div className="lab-leaf-back lab-book-copy"><BookIntro decorative/></div></div>
+    <div className="lab-book-leaf" ref={leafRef} aria-hidden="true"><div className="lab-leaf-front"><BookPage active={turningFrom} decorative/></div><div className="lab-leaf-back lab-book-copy" data-page-chapter={Math.min(2,turningFrom+1)}><BookIntro decorative/></div></div>
     <div className="lab-book-navigation"><button onClick={() => select(Math.max(0,completed-1))} disabled={completed === 0 && turn === 0} aria-label="Poprzedni rozdział">Poprzedni</button><span>0{completed + 1} / 03</span><button onClick={() => select(Math.min(2,completed+1))} disabled={completed === 2} aria-label="Kolejny rozdział">Kolejny <ArrowRight size={20}/></button></div>
   </section>;
 }

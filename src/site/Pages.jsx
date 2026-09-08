@@ -446,7 +446,7 @@ export function Legal() {
         </dl>
         <h2>Materiały wizualne</h2>
         <p>
-          Ilustracje ludzi i scen współpracy są materiałami koncepcyjnymi. Nie
+          Materiały wizualne pokazują tematykę naszej działalności. Nie
           przedstawiają konkretnych uczestników, pracowników ani projektów
           fundacji.
         </p>
@@ -486,7 +486,7 @@ export function Legal() {
         <p>Zdjęcia edukacji, spotkań i pracy w laboratorium ilustrują tematykę strony. Nie przedstawiają pracowników, partnerów ani uczestników projektów fundacji i nie stanowią dokumentacji jej działalności. Nie przypisujemy im lokalizacji w Polsce.</p>
         <ul className="photo-source-list">{photoSources.map(([author,url,subject])=><li key={url}><a href={url}>{subject}</a> — {author}, Pexels.</li>)}</ul>
         <p><a href="https://www.pexels.com/license/">Licencja Pexels</a>. Zmiany: zmniejszenie rozmiaru, kadrowanie i prezentacja w odcieniach szarości.</p>
-        <p>Kolaże na stronach Partnerstwo i Projekty są ilustracjami koncepcyjnymi wygenerowanymi z użyciem AI. Przedstawione osoby nie są zespołem fundacji; połączenia na mapie nie oznaczają rzeczywistych lokalizacji projektów.</p>
+        <p>Kolaże na stronach Partnerstwo i Projekty zostały wygenerowane z użyciem AI. Przedstawione osoby nie są zespołem fundacji; połączenia na mapie nie oznaczają rzeczywistych lokalizacji projektów.</p>
         <TextLink href="/kontakt/">Kontakt z fundacją</TextLink>
       </article>
     </>
