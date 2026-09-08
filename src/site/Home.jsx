@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { PhotoPillars } from "./Editorial.jsx";
 import ProgrammeExplorer from "./ProgrammeExplorer.jsx";
+import HeroVariants from './HeroVariants.jsx';
 import { organisation as org, projects } from "./content.js";
 import {
   Button,
@@ -9,7 +10,7 @@ import {
   ProjectList,
   PartnershipCTA,
 } from "./components.jsx";
-export default function Home({ hero }) {
+export default function Home({ hero, variant }) {
   const page = useRef(null);
   useEffect(() => {
     let disposed = false, cleanup;
@@ -20,7 +21,7 @@ export default function Home({ hero }) {
   }, []);
   return (
     <div ref={page} className="home-page">
-      <section className="home-intro-surface">
+      {variant ? <HeroVariants variant={variant} /> : <><section className="home-intro-surface">
       <div className="home-intro container">
         <div>
           <h1>
@@ -44,7 +45,7 @@ export default function Home({ hero }) {
         </div>
       </div>
       </section>
-      {hero}
+      {hero}</>}
       <section className="section mission-intro" id="wiedza-ludzie">
         <p className="eyebrow">Doświadczenie, które łączy</p>
         <div className="mission-intro-media">

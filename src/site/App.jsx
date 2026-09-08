@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Header, Footer, CookieNotice } from "./components.jsx";
 import Home from "./Home.jsx";
 import HeroJourney from "./HeroJourney.jsx";
@@ -22,6 +22,11 @@ const routes = {
   "/informacje/": Legal,
 };
 export default function Site({ path = "/" }) {
+  const [heroVariant, setHeroVariant] = useState(null);
+  useEffect(() => {
+    const value = Number(new URLSearchParams(location.search).get('hero'));
+    if ([1, 2, 3].includes(value)) setHeroVariant(value);
+  }, []);
   useEffect(() => {
     // Vite's client-rendered preview has no anchor target until React mounts.
     // Wait for fonts so a cross-page programme link also lands accurately there.
@@ -40,7 +45,7 @@ export default function Site({ path = "/" }) {
     <div id="top" data-page={normalised}>
       <Header path={normalised} />
       <main id="main">
-        {normalised === "/" ? <Home hero={<HeroJourney />} /> : <Page />}
+        {normalised === "/" ? <Home variant={heroVariant} hero={<HeroJourney />} /> : <Page />}
       </main>
       <Footer />
       <CookieNotice />

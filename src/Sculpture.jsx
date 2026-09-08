@@ -19,12 +19,12 @@ function ribbonGeometry(radius,width,phase){
  const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geometry.setIndex(indices);geometry.computeVertexNormals();return geometry;
 }
 const smooth=(a,b,v)=>{const t=THREE.MathUtils.clamp((v-a)/(b-a),0,1);return t*t*(3-2*t);};
-export default function Sculpture({progress,motion,onState}){
+export default function Sculpture({progress,motion,onState,presentation=false}){
  const host=useRef(null),motionRef=useRef(motion);
  useEffect(()=>{motionRef.current=motion;},[motion]);
  useEffect(()=>{
   let renderer;
-  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});}catch{onState('failed');return;}
+  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:presentation,powerPreference:'high-performance'});}catch{onState('failed');return;}
   const el=host.current;renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFShadowMap;el.appendChild(renderer.domElement);
   const scene=new THREE.Scene(),lightBg=new THREE.Color('#e8e2da'),darkBg=new THREE.Color('#2c1921');scene.background=lightBg.clone();scene.fog=new THREE.Fog(lightBg,16,35);
   const camera=new THREE.PerspectiveCamera(38,1,.1,80),pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment(),env=pmrem.fromScene(room,.04);scene.environment=env.texture;room.dispose();
@@ -42,12 +42,14 @@ export default function Sculpture({progress,motion,onState}){
    frame=requestAnimationFrame(render);const dt=Math.min(.04,(time-last)/1000||0);last=time;if(!visible||document.hidden)return;
    const moving=motionRef.current,target=progress.current;p=moving?THREE.MathUtils.damp(p,target,8,dt):target;if(moving)clock+=dt;
    const signature=`${p.toFixed(4)}-${moving}-${resizeVersion}`;if(!moving&&signature===prevSignature)return;prevSignature=signature;
-   const used=moving?p:p<.29?0:p<.72?.47:.94,expand=smooth(.25,.94,used),dark=smooth(.20,.40,used)*(1-smooth(.70,.94,used));const bg=lightBg.clone().lerp(darkBg,dark);scene.background.copy(bg);scene.fog.color.copy(bg);floorMaterial.color.copy(bg);
+   const used=moving?p:p<.29?0:p<.72?.47:.94,expand=smooth(.25,.94,used),dark=smooth(.20,.40,used)*(1-smooth(.70,.94,used));const bg=lightBg.clone().lerp(darkBg,dark);scene.background?.copy(bg);scene.fog?.color.copy(bg);floorMaterial.color.copy(bg);
    meshes.forEach((mesh,i)=>{const theta=i*Math.PI/3;mesh.rotation.set(.30+Math.sin(theta)*.92*(1-expand)+expand*.15,theta*.50*(1-expand)+expand*.3,theta*.30+expand*(theta*.3));mesh.position.set(Math.cos(theta)*expand*1.05,Math.sin(theta)*expand*.72,(i-2.5)*expand*.36);});
    group.rotation.set(.05+(moving?pointer.y*.12:0),used*1.5+(moving?pointer.x*.22+Math.sin(clock*.19)*.08:0),-.18+used*.5);group.position.set(mobile?0:1.1,mobile?1.5:.10,0);group.scale.setScalar(mobile?.62:1);
-   const zoom=Math.sin(used*Math.PI)*1.35;camera.position.set(Math.sin(used*Math.PI)*.7,.65+Math.sin(used*Math.PI)*.7,(mobile?10.8:8.4)-zoom);camera.lookAt(mobile?0:.30,mobile?.3:0,0);renderer.render(scene,camera);
+   const zoom=Math.sin(used*Math.PI)*1.35;camera.position.set(Math.sin(used*Math.PI)*.7,.65+Math.sin(used*Math.PI)*.7,(mobile?10.8:8.4)-zoom);camera.lookAt(mobile?0:.30,mobile?.3:0,0);
+   if(presentation){scene.background=null;scene.fog=null;floor.visible=false;group.position.set(0,0,0);group.scale.setScalar(.94);camera.position.set(0,.45,Math.max(8.4,8.4/camera.aspect));camera.lookAt(0,0,0);}
+   renderer.render(scene,camera);
   };frame=requestAnimationFrame(render);onState('ready');
   return()=>{cancelAnimationFrame(frame);observer.disconnect();intersection.disconnect();el.removeEventListener('pointermove',move);el.removeEventListener('pointerleave',reset);renderer.domElement.removeEventListener('webglcontextlost',contextLost);meshes.forEach(m=>{m.geometry.dispose();m.material.dispose();});floor.geometry.dispose();floor.material.dispose();env.dispose();pmrem.dispose();renderer.dispose();renderer.domElement.remove();};
- },[progress,onState]);
+ },[progress,onState,presentation]);
  return <div ref={host} className="sculpture"/>;
 }
