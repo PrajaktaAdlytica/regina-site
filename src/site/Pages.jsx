@@ -197,7 +197,7 @@ export function Partnership() {
   return (
     <div className="partnership-page" ref={page}>
       <PartnershipCollageHero />
-      <section className="partnership-opening container">
+      <section className="partnership-opening partnership-composition">
         <Artwork
           name="partnership-collaboration-v2"
           alt="Kolaż fotograficzny trzech osób wspólnie analizujących dokumenty; scena tematyczna, nie przedstawia zespołu fundacji."

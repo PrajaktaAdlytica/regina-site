@@ -58,13 +58,53 @@
   .partnership-page .offer-grid > article:hover > img {
     transform: translateX(6px) translateY(-4px);
   }
-  .partnership-page .collage-hero figure:hover > img,
-  .partnership-page .partnership-opening:hover > .human-art {
+  .partnership-page .collage-hero figure:hover > img {
     transform: translateY(-6px) scale(1.015);
   }
   .partnership-page .network-block:hover > img {
     transform: translateY(-5px);
     box-shadow: var(--rp-shadow-raised);
+  }
+}
+
+/* A continuous editorial surface, not an image card on the page. */
+.partnership-page .partnership-composition {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(36px, 5vw, 80px) max(24px, calc((100vw - 1440px) / 2));
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  background: #faf3e6;
+}
+.partnership-page .partnership-composition > .human-art {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 94%, transparent), linear-gradient(to bottom, transparent, #000 5%, #000 94%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 4%, #000 94%, transparent), linear-gradient(to bottom, transparent, #000 5%, #000 94%, transparent);
+  mask-composite: intersect;
+}
+.partnership-page .partnership-composition > div {
+  max-width: 600px;
+  padding-right: clamp(0px, 2vw, 32px);
+}
+.partnership-page .partnership-composition p {
+  color: #49413d;
+  line-height: 1.75;
+}
+@media (max-width: 760px) {
+  .partnership-page .partnership-composition {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 32px 20px 48px;
+  }
+  .partnership-page .partnership-composition > div {
+    max-width: none;
+    padding: 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {
