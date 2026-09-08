@@ -199,8 +199,8 @@ export function Partnership() {
       <PartnershipCollageHero />
       <section className="partnership-opening container">
         <Artwork
-          name="international"
-          alt="Ilustracja rozmów i współpracy osób z różnych środowisk."
+          name="partnership-collaboration-v2"
+          alt="Kolaż fotograficzny trzech osób wspólnie analizujących dokumenty; scena tematyczna, nie przedstawia zespołu fundacji."
         />
         <div>
           <p>{org.partnership}</p>
