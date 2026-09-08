@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Header, Footer, CookieNotice } from "./components.jsx";
 import Home from "./Home.jsx";
-import HeroJourney from "./HeroJourney.jsx";
-const HeroLab = React.lazy(() => import('./HeroLab.jsx'));
+import HeroLab from './HeroLab.jsx';
 import {
   Mission,
   Activities,
@@ -48,7 +47,7 @@ export default function Site({ path = "/" }) {
     <div id="top" data-page={normalised}>
       <Header path={normalised} />
       <main id="main">
-        {normalised === "/" && heroLab ? <React.Suspense fallback={<p className="container">Ładowanie podglądu…</p>}><HeroLab /></React.Suspense> : normalised === "/" ? <Home variant={heroVariant} hero={<HeroJourney />} /> : <Page />}
+        {normalised === "/" && heroLab ? <React.Suspense fallback={<p className="container">Ładowanie podglądu…</p>}><HeroLab /></React.Suspense> : normalised === "/" ? <Home variant={heroVariant} hero={<React.Suspense fallback={<p className="container">Ładowanie podglądu…</p>}><HeroLab bookOnly /></React.Suspense>} /> : <Page />}
       </main>
       {!heroLab && <><Footer /><CookieNotice /></>}
     </div>

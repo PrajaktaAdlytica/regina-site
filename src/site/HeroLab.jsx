@@ -12,7 +12,8 @@ const chapters = [
   { title: 'Współpraca', id: 'wspolpraca', description: 'Razem możemy sięgać dalej.' },
 ];
 function Heading({ id }) {
-  return <><p className="lab-eyebrow">Fundacja Regina Purpurea Fundus</p><h2 id={id}>Od ponad 20 lat działamy na rzecz rozwoju społecznego i gospodarczego <em>Polski i społeczności międzynarodowej.</em></h2></>;
+  const Tag = id === 'book-title' ? 'h1' : 'h2';
+  return <><p className="lab-eyebrow">Fundacja Regina Purpurea Fundus</p><Tag id={id}>Od ponad 20 lat działamy na rzecz rozwoju społecznego i gospodarczego <em>Polski i społeczności międzynarodowej.</em></Tag></>;
 }
 function Intro() { return <p className="lab-description">Wspieramy edukację zawodową, transformację technologiczną przedsiębiorstw oraz międzynarodową współpracę społeczną.</p>; }
 function CTA() { return <a className="lab-cta" href="/dzialania/">Poznaj nasze programy <ArrowUpRight size={23}/></a>; }
@@ -62,7 +63,7 @@ function Panels() {
     </article>)}</div>
   </section>;
 }
-export default function HeroLab() {
+export default function HeroLab({ bookOnly = false }) {
   const root = useRef(null);
   const leafRef = useRef(null);
   const navigation = useRef({});
@@ -98,7 +99,8 @@ export default function HeroLab() {
   useEffect(() => {
     if(reduced || !motion) return;
     gsap.registerPlugin(ScrollTrigger);
-    const lenis = new Lenis({ duration: 1.05, anchors: { offset: -140 } });
+    // The full homepage already owns Lenis; do not attach a second wheel handler.
+    const lenis = bookOnly ? {scrollTo:y => window.scrollTo({top:y,behavior:'smooth'}),raf:() => {},on:() => {},destroy:() => {}} : new Lenis({ duration: 1.05, anchors: { offset: -140 } });
     const tick = time => lenis.raf(time * 1000);
     lenis.on('scroll',ScrollTrigger.update); gsap.ticker.add(tick);
     const context = gsap.context(() => {
@@ -107,7 +109,7 @@ export default function HeroLab() {
       });
       if (desktop) {
         const headerHeight = () => document.querySelector('header')?.getBoundingClientRect().height || 92;
-        const arch = ScrollTrigger.create({trigger:'.lab-arches',start:() => `top top+=${headerHeight()}`,end:() => `+=${innerHeight * 2.2}`,pin:true,invalidateOnRefresh:true,onUpdate:self => setArchChapter(Math.min(2,Math.floor(self.progress * 3)))});
+        const arch = bookOnly ? null : ScrollTrigger.create({trigger:'.lab-arches',start:() => `top top+=${headerHeight()}`,end:() => `+=${innerHeight * 2.2}`,pin:true,invalidateOnRefresh:true,onUpdate:self => setArchChapter(Math.min(2,Math.floor(self.progress * 3)))});
         const book = ScrollTrigger.create({trigger:'.lab-book',start:() => `top top+=${headerHeight()}`,end:() => `+=${innerHeight * 2.6}`,pin:true,invalidateOnRefresh:true,onUpdate:self => {
           // Two complete turns separated by reading plateaus; never recycle
           // a half-turned sheet or advance the navigation before it settles.
@@ -124,7 +126,8 @@ export default function HeroLab() {
     },root);
     document.fonts.ready.then(() => ScrollTrigger.refresh());
     return () => { navigation.current = {}; context.revert(); gsap.set(leafRef.current,{visibility:'hidden',rotationY:0}); gsap.ticker.remove(tick); lenis.destroy(); };
-  },[motion,reduced,desktop]);
+  },[motion,reduced,desktop,bookOnly]);
+  if(bookOnly) return <div ref={root} className={`hero-lab homepage-book ${reduced ? 'lab-no-motion' : ''}`}><Book active={bookChapter} select={index => selectChapter('book',index)} leafRef={leafRef} turningFrom={turningFrom} completed={bookPosition.completed} turn={bookPosition.turn}/></div>;
   return <div ref={root} className={`hero-lab ${!motion || reduced ? 'lab-no-motion' : ''}`}>
     <nav className="lab-toolbar" aria-label="Porównanie koncepcji"><span>HERO / MOTION STUDY</span><div><a href="#lab-arches">01 Łuki</a><a href="#lab-book">02 Księga</a><a href="#lab-panels">03 Panele</a></div><button onClick={() => setMotion(!motion)} disabled={reduced} aria-label={motion ? 'Zatrzymaj animacje' : 'Włącz animacje'}>{motion && !reduced ? <Pause size={16}/> : <Play size={16}/>}<span>{motion && !reduced ? 'Ruch włączony' : 'Ruch wyłączony'}</span></button></nav>
     <Arch active={archChapter} select={index => selectChapter('arch',index)}/><div className="lab-divider">02 / Księga możliwości <span>Przewijaj, aby przewracać strony</span></div><Book active={bookChapter} select={index => selectChapter('book',index)} leafRef={leafRef} turningFrom={turningFrom} completed={bookPosition.completed} turn={bookPosition.turn}/><div className="lab-divider">03 / Trzy obszary <span>Najedź, dotknij lub użyj klawiatury</span></div><Panels/>

@@ -21,31 +21,7 @@ export default function Home({ hero, variant }) {
   }, []);
   return (
     <div ref={page} className="home-page">
-      {variant ? <HeroVariants variant={variant} /> : <><section className="home-intro-surface">
-      <div className="home-intro container">
-        <div>
-          <h1>
-            <span className="home-title-name">Fundacja Regina Purpurea Fundus</span>{" "}
-            Od ponad 20 lat działamy na rzecz rozwoju społecznego i gospodarczego{" "}
-            <em>Polski i społeczności międzynarodowej.</em>
-          </h1>
-        </div>
-        <div className="home-intro-aside">
-          <span className="intro-marker">
-            Polska · Współpraca międzynarodowa
-          </span>
-          <p className="muted">
-            Wspieramy edukację zawodową, transformację technologiczną
-            przedsiębiorstw oraz międzynarodową współpracę społeczną.
-          </p>
-          <div className="home-programme-cta">
-            <span className="home-programme-name">ACCELERATE POLAND</span>
-            <Button href={projects[0].url} external>Poznaj nasze programy</Button>
-          </div>
-        </div>
-      </div>
-      </section>
-      {hero}</>}
+      {variant ? <HeroVariants variant={variant} /> : hero}
       <section className="section mission-intro" id="wiedza-ludzie">
         <p className="eyebrow">Doświadczenie, które łączy</p>
         <div className="mission-intro-media">
