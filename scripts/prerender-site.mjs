@@ -28,4 +28,10 @@ try{
  fs.writeFileSync(path.join(root,'sitemap.xml'),sitemap);
  fs.writeFileSync(path.join(root,'robots.txt'),`User-agent: *\nDisallow: /\n${origin?'Sitemap: '+origin+'/sitemap.xml\n':''}`);
  console.log(`Prerendered ${Object.keys(pages).length} pages and a 404; ${origin?'trusted origin configured':'origin pending deployment'}. Review build is noindex.`);
-}finally{await server.close()}
+}finally{
+ // In middleware mode Vite has no listening HTTP server. Closing the full
+ // dev-server can therefore remain unsettled on Vercel's Node runtime; the
+ // watcher and websocket are the resources created for ssrLoadModule here.
+ await server.watcher.close();
+ server.ws.close();
+}
