@@ -45,9 +45,12 @@ export default function Home({ hero }) {
       </div>
       </section>
       {hero}
-      <section className="container section mission-intro">
+      <section className="container section mission-intro" id="wiedza-ludzie">
         <p className="eyebrow">Doświadczenie, które łączy</p>
-        <div>
+        <figure className="mission-intro-photo">
+          <img src="/site/professional-workshop.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Dorośli uczestnicy warsztatu omawiają materiały z prowadzącą — obraz tematyczny wygenerowany z użyciem AI." />
+        </figure>
+        <div className="mission-intro-copy">
           <h2>
             Wiedza. Ludzie.
             <br />

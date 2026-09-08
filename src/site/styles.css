@@ -409,8 +409,27 @@ summary:focus-visible {
 }
 .mission-intro {
   display: grid;
-  grid-template-columns: 1fr 2.2fr;
-  gap: 64px;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: 32px 56px;
+}
+.mission-intro > .eyebrow {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+.mission-intro-photo {
+  margin: 0;
+  overflow: hidden;
+  background: var(--rp-rose);
+}
+.mission-intro-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 700ms var(--ease);
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .mission-intro-photo:hover img { transform: scale(1.025); }
 }
 .mission-intro h2 {
   margin-bottom: 32px;
@@ -986,7 +1005,7 @@ summary:focus-visible {
   }
   .mission-intro {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 28px;
   }
   .mission-intro h2 {
     margin-bottom: 24px;
